@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://mruo30i2leg8"]
+
+[ext_resource type="Script" uid="uid://co07t1lg87p6i" path="res://code_editor.gd" id="1_uoi7k"]
+
+[node name="CodeEditor" type="CodeEdit" unique_id=1844267820]
+offset_right = 250.0
+offset_bottom = 204.0
+scroll_smooth = true
+symbol_lookup_on_click = true
+symbol_tooltip_on_hover = true
+gutters_draw_line_numbers = true
+script = ExtResource("1_uoi7k")

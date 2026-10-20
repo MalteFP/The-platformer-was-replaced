@@ -17,7 +17,6 @@ class AssignmentNode extends ASTNode:
 	func _init(name: String, val):
 		var_name = name
 		value = val
-		print(var_name + " = " + str(value))
 
 
 class LoopNode extends ASTNode:
@@ -32,8 +31,35 @@ class BinaryOpNode extends ASTNode:
 	var left
 	var op: String
 	var right
-	
 	func _init(l, o, r):
 		left = l
 		op = o
 		right = r
+
+
+class IfNode extends ASTNode:
+	var condition_expr
+	var then_branch: Array[ASTNode]
+	var else_branch: Array[ASTNode]
+	
+	func _init(p_cond, p_then: Array[ASTNode], p_else: Array[ASTNode] = []):
+		condition_expr = p_cond
+		then_branch = p_then
+		else_branch = p_else
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	

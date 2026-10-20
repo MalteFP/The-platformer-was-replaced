@@ -1,6 +1,6 @@
 class_name Lexer
 
-enum TokenType { IDENTIFIER, NUMBER, LPAREN, RPAREN, LBRACE, RBRACE, EQUALS, COLON, NEWLINE, EOF }
+enum TokenType { IDENTIFIER, NUMBER, LPAREN, RPAREN, LBRACE, RBRACE, EQUALS, OPERATOR, NEWLINE, EOF }
 
 class Token:
 	var type: TokenType
@@ -18,23 +18,54 @@ static func tokenize(code: String) -> Array[Token]:
 		if trimmed == "" or trimmed.begins_with("#"):
 			continue
 		
-		var formatted = trimmed \
-			.replace("(", " ( ") \
-			.replace(")", " ) ") \
-			.replace("{", " { ") \
-			.replace("}", " } ") \
-			.replace("=", " = ")
+		var i = 0
+		while i < trimmed.length():
+			var c = trimmed[i]
 			
-		var words = formatted.split(" ", false)
-		for word in words:
-			match word:
-				"(": tokens.append(Token.new(TokenType.LPAREN))
-				")": tokens.append(Token.new(TokenType.RPAREN))
-				"{": tokens.append(Token.new(TokenType.LBRACE))
-				"}": tokens.append(Token.new(TokenType.RBRACE))
-				"=": tokens.append(Token.new(TokenType.EQUALS))
-				_: tokens.append(Token.new(TokenType.IDENTIFIER, word))
+			if c == " " or c == "\t":
+				i += 1
+				continue
 				
+			if i + 1 < trimmed.length():
+				var two_chars = trimmed.substr(i, 2)
+				if two_chars in ["==", "!=", "<=", ">="]:
+					tokens.append(Token.new(TokenType.OPERATOR, two_chars))
+					i += 2
+					continue
+			
+			match c:
+				"(":
+					tokens.append(Token.new(TokenType.LPAREN, "("))
+					i += 1
+				")":
+					tokens.append(Token.new(TokenType.RPAREN, ")"))
+					i += 1
+				"{":
+					tokens.append(Token.new(TokenType.LBRACE, "{"))
+					i += 1
+				"}":
+					tokens.append(Token.new(TokenType.RBRACE, "}"))
+					i += 1
+				"=":
+					tokens.append(Token.new(TokenType.EQUALS, "="))
+					i += 1
+				"+", "-", "*", "/", "%", "<", ">":
+					tokens.append(Token.new(TokenType.OPERATOR, c))
+					i += 1
+				_:
+					var start = i
+					while i < trimmed.length():
+						var next_c = trimmed[i]
+						if next_c in [" ", "\t", "(", ")", "{", "}", "=", "+", "-", "*", "/", "%", "<", ">", "!"]:
+							break
+						i += 1
+					var word = trimmed.substr(start, i - start)
+					if word != "":
+						if word.is_valid_int():
+							tokens.append(Token.new(TokenType.NUMBER, word))
+						else:
+							tokens.append(Token.new(TokenType.IDENTIFIER, word))
+							
 		tokens.append(Token.new(TokenType.NEWLINE))
 		
 	tokens.append(Token.new(TokenType.EOF))
