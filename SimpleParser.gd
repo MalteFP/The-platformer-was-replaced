@@ -14,28 +14,55 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 		
 		#Line skips
 		if end_token_type != -1 and token.type == end_token_type:
-			i += 1 # Move past the closing brace
+			i += 1
 			break
 			
 		if token.type == Lexer.TokenType.NEWLINE or token.type == Lexer.TokenType.EOF:
 			i += 1
 			continue
 			
-		# 1.Loop
-		if token.type == Lexer.TokenType.IDENTIFIER and token.value == "repeat":
-			print("loop")
+		# 1. For Loop
+		if token.type == Lexer.TokenType.IDENTIFIER and token.value == "for":
 			i += 1 
-			var count_expr_result = _parse_value_or_expr(tokens, i)
-			i = count_expr_result.next_index
+			var var_name = tokens[i].value
+			i += 2
+			var asignment_result = _parse_value_or_expr(tokens, i)
+			var asignment = AST.AssignmentNode.new(var_name, asignment_result)
+			i = asignment_result.next_index
+			i += 3
+			
+			print(i)
+			
+			var cond_result = _parse_value_or_expr(tokens, i)
+			i = cond_result.next_index
+			i += 1
+			
+			print(i)
+			
+			var increment_result = _parse_value_or_expr(tokens, i)
+			var increment = AST.AssignmentNode.new(var_name, increment_result)
+			i = increment_result.next_index
+			i += 0
+			if i < tokens.size() and tokens[i].type == Lexer.TokenType.LBRACE:
+				i += 1
+				var block_result = _parse_block(tokens, i, Lexer.TokenType.RBRACE)
+				nodes.append(AST.ForLoopNode.new(asignment, cond_result, increment, block_result.nodes))
+				i = block_result.next_index
+		
+		# 2. While Loop
+		elif token.type == Lexer.TokenType.IDENTIFIER and token.value == "while":
+			i += 1
+			var cond_result = _parse_value_or_expr(tokens, i)
+			i = cond_result.next_index
 			
 			if i < tokens.size() and tokens[i].type == Lexer.TokenType.LBRACE:
 				i += 1
 				var block_result = _parse_block(tokens, i, Lexer.TokenType.RBRACE)
 				
-				nodes.append(AST.LoopNode.new(count_expr_result.node, block_result.nodes))
+				nodes.append(AST.WhileLoopNode.new(cond_result.node, block_result.nodes))
 				i = block_result.next_index
 			
-		# 2. Variable Assignment
+		# 3. Variable Assignment
 		elif token.type == Lexer.TokenType.IDENTIFIER and i + 1 < tokens.size() and tokens[i + 1].type == Lexer.TokenType.EQUALS:
 			var var_name = token.value
 			i += 2 
@@ -43,7 +70,7 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 			nodes.append(AST.AssignmentNode.new(var_name, expr_result.node))
 			i = expr_result.next_index
 			
-		# 3. Function Call
+		# 4. Function Call
 		elif token.type == Lexer.TokenType.IDENTIFIER and i + 1 < tokens.size() and tokens[i + 1].type == Lexer.TokenType.LPAREN:
 			var func_name = token.value
 			i += 2 
@@ -59,7 +86,7 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 				
 			nodes.append(AST.FunctionCallNode.new(func_name, args))
 		
-		# 4. If statement
+		# 5. If statement
 		elif token.type == Lexer.TokenType.IDENTIFIER and token.value == "if":
 			i += 1
 			

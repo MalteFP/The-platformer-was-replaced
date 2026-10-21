@@ -1,6 +1,6 @@
 class_name Lexer
 
-enum TokenType { IDENTIFIER, NUMBER, LPAREN, RPAREN, LBRACE, RBRACE, EQUALS, OPERATOR, NEWLINE, EOF }
+enum TokenType { IDENTIFIER, NUMBER, LPAREN, RPAREN, LBRACE, RBRACE, SEMICOL, EQUALS, OPERATOR, NEWLINE, EOF }
 
 class Token:
 	var type: TokenType
@@ -46,6 +46,8 @@ static func tokenize(code: String) -> Array[Token]:
 				"}":
 					tokens.append(Token.new(TokenType.RBRACE, "}"))
 					i += 1
+				";":
+					tokens.append(Token.new(TokenType.SEMICOL, ";"))
 				"=":
 					tokens.append(Token.new(TokenType.EQUALS, "="))
 					i += 1

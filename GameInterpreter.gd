@@ -9,10 +9,13 @@ func run_ast(nodes: Array[AST.ASTNode]):
 		if node is AST.AssignmentNode:
 			var evaluated_val = evaluate_expression(node.value)
 			memory[node.var_name] = evaluated_val
-		elif node is AST.LoopNode:
-			var raw_count = evaluate_expression(node.count_expr)
-			var count = int(raw_count)
-			for step in range(count):
+		elif node is AST.ForLoopNode:
+			await run_ast([node.init_expr])
+			while evaluate_expression(node.condition_expr):
+				await run_ast(node.body)
+				await run_ast([node.increment_expr])
+		elif node is AST.WhileLoopNode:
+			while evaluate_expression(node.condition_expr):
 				await run_ast(node.body)
 		elif node is AST.FunctionCallNode:
 			var temp_args: Array = []

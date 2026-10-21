@@ -19,11 +19,22 @@ class AssignmentNode extends ASTNode:
 		value = val
 
 
-class LoopNode extends ASTNode:
-	var count_expr
+class ForLoopNode extends ASTNode:
+	var init_expr
+	var condition_expr
+	var increment_expr
 	var body: Array[ASTNode] = []
-	func _init(cnt, b: Array[ASTNode]):
-		count_expr = cnt
+	func _init(init, condition, increment, b: Array[ASTNode]):
+		init_expr = init
+		condition_expr = condition
+		increment_expr = increment
+		body = b
+
+class WhileLoopNode extends ASTNode:
+	var condition_expr
+	var body: Array[ASTNode] = []
+	func _init(condition, b: Array[ASTNode]):
+		condition_expr = condition
 		body = b
 
 
