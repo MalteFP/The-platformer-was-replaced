@@ -1,7 +1,24 @@
 class_name AST
 
 class ASTNode:
-	pass
+	var line: int = 0
+
+class LiteralNode extends ASTNode:
+	var value
+	func _init(v):
+		value = v
+
+class VariableNode extends ASTNode:
+	var var_name: String
+	func _init(n: String):
+		var_name = n
+
+class UnaryOpNode extends ASTNode:
+	var op: String
+	var operand
+	func _init(o: String, e):
+		op = o
+		operand = e
 
 
 class FunctionCallNode extends ASTNode:
