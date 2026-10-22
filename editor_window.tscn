@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ddfin2ysc886i"]
+
+[ext_resource type="Script" uid="uid://c2lip6skqfb4t" path="res://editor_window.gd" id="1_r083v"]
+[ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://code_editor.tscn" id="2_7n6dd"]
+
+[node name="EditorWindow" type="PanelContainer" unique_id=2143128936]
+offset_left = 125.0
+offset_top = 68.0
+offset_right = 257.0
+offset_bottom = 111.0
+script = ExtResource("1_r083v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=276657373]
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="VBoxContainer" unique_id=489025824]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/TitleBar" unique_id=1891940079]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Code"
+
+[node name="TitleEdit" type="LineEdit" parent="VBoxContainer/TitleBar" unique_id=221133959]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MinimizeButton" type="Button" parent="VBoxContainer/TitleBar" unique_id=903536999]
+layout_mode = 2
+mouse_filter = 2
+text = "_"
+
+[node name="CodeEditor" parent="VBoxContainer" unique_id=1844267820 instance=ExtResource("2_7n6dd")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Footer" type="HBoxContainer" parent="." unique_id=129935214]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Footer" unique_id=549235264]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResizeHandle" type="Control" parent="Footer" unique_id=1873356075]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_default_cursor_shape = 2

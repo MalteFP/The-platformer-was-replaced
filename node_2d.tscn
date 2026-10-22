@@ -25,5 +25,9 @@ offset_right = 549.0
 offset_bottom = 507.0
 
 [node name="Output" parent="." unique_id=1369597118 instance=ExtResource("4_0hol4")]
+offset_left = 572.0
+offset_top = 14.0
+offset_right = 1123.0
+offset_bottom = 631.0
 
 [connection signal="pressed" from="run" to="." method="_on_run_pressed"]
