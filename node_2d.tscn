@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7si6msfyeojs" path="res://GameInterpreter.gd" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://player.tscn" id="2_0e48y"]
 [ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://code_editor.tscn" id="3_epypp"]
+[ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://output.tscn" id="4_0hol4"]
 
 [node name="GameInterpreter" type="Node2D" unique_id=97430055 node_paths=PackedStringArray("player") groups=["GameInterpreter"]]
 script = ExtResource("1_wtcfe")
@@ -22,5 +23,7 @@ offset_left = 144.0
 offset_top = 142.0
 offset_right = 549.0
 offset_bottom = 507.0
+
+[node name="Output" parent="." unique_id=1369597118 instance=ExtResource("4_0hol4")]
 
 [connection signal="pressed" from="run" to="." method="_on_run_pressed"]

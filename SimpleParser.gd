@@ -24,6 +24,7 @@ static func _describe(token) -> String:
 static func _error(message: String, token) -> void:
 	if errors.is_empty():
 		errors.append({"line": token.line, "message": message})
+		print("Line "+ str(token.line) + ": " + message)
 
 static func _expect(tokens: Array, i: int, type, what: String) -> bool:
 	var t = _tok(tokens, i)
@@ -95,13 +96,11 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 			i += 1
 			var cond_result = _parse_value_or_expr(tokens, i)
 			i = cond_result.next_index
-			
-			if i < tokens.size() and tokens[i].type == Lexer.TokenType.LBRACE:
-				i += 1
-				var block_result = _parse_block(tokens, i, Lexer.TokenType.RBRACE)
-				
-				nodes.append(AST.WhileLoopNode.new(cond_result.node, block_result.nodes))
-				i = block_result.next_index
+			if not _expect(tokens, i, Lexer.TokenType.LBRACE, "'{' after the while condition"): continue
+			i += 1
+			var block_result = _parse_block(tokens, i, Lexer.TokenType.RBRACE)
+			i = block_result.next_index
+			nodes.append(AST.WhileLoopNode.new(cond_result.node, block_result.nodes))
 			
 		# 3. Variable Assignment
 		elif token.type == Lexer.TokenType.IDENTIFIER and i + 1 < tokens.size() and tokens[i + 1].type == Lexer.TokenType.EQUALS:
@@ -114,17 +113,25 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 		# 4. Function Call
 		elif token.type == Lexer.TokenType.IDENTIFIER and i + 1 < tokens.size() and tokens[i + 1].type == Lexer.TokenType.LPAREN:
 			var func_name = token.value
-			i += 2
-
 			var args: Array = []
-			while i < tokens.size() and tokens[i].type != Lexer.TokenType.RPAREN:
-				if tokens[i].type == Lexer.TokenType.DOT or tokens[i].type == Lexer.TokenType.NEWLINE:
+			i += 2
+			while errors.is_empty():
+				var t = _tok(tokens, i)
+				if t.type == Lexer.TokenType.RPAREN:
 					i += 1
-					continue
+					break
+				if t.type == Lexer.TokenType.NEWLINE or t.type == Lexer.TokenType.EOF:
+					_error("Missing ')' to close the call to %s()" % func_name, t)
+					break
 				var arg = _parse_value_or_expr(tokens, i)
 				args.append(arg.node)
 				i = arg.next_index
-
+				var sep = _tok(tokens, i)
+				if sep.type == Lexer.TokenType.COMMA:
+					i += 1
+				elif sep.type != Lexer.TokenType.RPAREN:
+					_error("Expected ',' between arguments or ')' to end this call, but found %s" % _describe(sep), sep)
+					continue
 			if i < tokens.size() and tokens[i].type == Lexer.TokenType.RPAREN:
 				i += 1
 

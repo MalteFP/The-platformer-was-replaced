@@ -11,6 +11,7 @@ func run_block(nodes: Array[AST.ASTNode]):
 
 func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
+		await get_tree().create_timer(0).timeout
 		if node is AST.AssignmentNode:
 			set_var(node.var_name, evaluate_expression(node.value))
 		elif node is AST.ForLoopNode:
@@ -66,7 +67,7 @@ func evaluate_expression(node):
 		match node.op:
 			"+":
 				if l is String or r is String:
-					return str(l) + str(r)   # "score: " + 5 works
+					return str(l) + str(r)
 				return l + r
 			"-": return l - r
 			"*": return l * r
@@ -74,7 +75,7 @@ func evaluate_expression(node):
 				if r == 0:
 					push_error("Division by zero")
 					return 0
-				return l / r                 # int/int stays int, any float gives float
+				return l / r
 			"%":
 				if r == 0:
 					push_error("Modulo by zero")

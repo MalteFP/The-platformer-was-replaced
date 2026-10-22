@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://blucib3jdicbr"]
+
+[node name="Output" type="RichTextLabel" unique_id=1369597118]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -6,7 +6,11 @@
 offset_right = 250.0
 offset_bottom = 204.0
 scroll_smooth = true
+draw_tabs = true
 symbol_lookup_on_click = true
 symbol_tooltip_on_hover = true
 gutters_draw_line_numbers = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
 script = ExtResource("1_uoi7k")

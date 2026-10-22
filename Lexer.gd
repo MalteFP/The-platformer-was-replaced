@@ -1,6 +1,6 @@
 class_name Lexer
 
-enum TokenType { IDENTIFIER, NUMBER, STRING, LPAREN, RPAREN, LBRACE, RBRACE, SEMICOL, DOT, EQUALS, OPERATOR, NEWLINE, EOF }
+enum TokenType { IDENTIFIER, NUMBER, STRING, LPAREN, RPAREN, LBRACE, RBRACE, SEMICOL, DOT, COMMA, EQUALS, OPERATOR, NEWLINE, EOF }
 
 class Token:
 	var type: TokenType
@@ -62,6 +62,9 @@ static func tokenize(code: String) -> Array[Token]:
 				".":
 					tokens.append(Token.new(TokenType.DOT, "."))
 					i += 1
+				",":
+					tokens.append(Token.new(TokenType.COMMA, ","))
+					i += 1
 				"\"":
 					i += 1
 					var str_value = ""
@@ -86,7 +89,7 @@ static func tokenize(code: String) -> Array[Token]:
 					var start = i
 					while i < trimmed.length():
 						var next_c = trimmed[i]
-						if next_c in [" ", "\t", "(", ")", "{", "}", "=", "+", "-", "*", "/", "%", "<", ">", "!", ";", ",", "\""]:
+						if next_c in [" ", "\t", "(", ")", "{", "}", "=", "+", "-", "*", "/", "%", "<", ">", "!", ";", ",", ".", "\""]:
 							break
 						i += 1
 					var word = trimmed.substr(start, i - start)

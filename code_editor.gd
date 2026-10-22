@@ -1,4 +1,4 @@
-extends TextEdit
+extends CodeEdit
 
 var keywords: Array[Dictionary] = [
 	{"keyword": "while","color": Color.ORANGE},
@@ -10,6 +10,7 @@ func _ready() -> void:
 	draw_control_chars = false
 	syntax_highlighter = create_custom_highligther()
 	add_theme_color_override("font_color", Color(0.545, 0.692, 0.999, 1.0))
+	set_auto_indent_prefixes(["{"])
 
 
 func create_custom_highligther() -> CodeHighlighter:

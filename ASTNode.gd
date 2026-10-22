@@ -75,7 +75,10 @@ class IfNode extends ASTNode:
 		then_branch = p_then
 		else_branch = p_else
 
-
+class functionNode extends ASTNode:
+	var func_name
+	var block
+	var args: Array
 
 
 
