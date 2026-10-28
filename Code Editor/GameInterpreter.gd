@@ -3,12 +3,23 @@ extends Node
 
 @export var player: Node2D
 
-const MAX_LOOP_ITERATIONS = 10000
-
-var scopes: Array[Dictionary] = [{}]
 signal error_occurred(line: int, message: String)
 
+const MAX_LOOP_ITERATIONS = 10000
+const MAX_CALL_DEPTH = 100
+const BUILTINFUNCS = {
+	"print": [1, 1],
+	"move": [1, 1]
+}
+
+var functions: Dictionary = {}
+var scopes: Array[Dictionary] = [{}]
+
 var halted := false
+
+var call_depth := 0
+var returning := false
+var return_value = null
 
 func _ready() -> void:
 	error_occurred.connect(_show_error)
@@ -28,7 +39,7 @@ func type_name(v) -> String:
 	return "an unknown value"
 
 func eval_condition(expr) -> bool:
-	var v = evaluate_expression(expr)
+	var v = await evaluate_expression(expr)
 	if halted:
 		return false
 	if not (v is bool):
@@ -50,7 +61,7 @@ func run_ast(nodes: Array[AST.ASTNode]):
 			
 			
 		if node is AST.AssignmentNode:
-			var value = evaluate_expression(node.value)
+			var value = await evaluate_expression(node.value)
 			if not halted:
 				set_var(node.var_name, value)
 				
@@ -59,7 +70,7 @@ func run_ast(nodes: Array[AST.ASTNode]):
 			push_scope()
 			await run_ast([node.init_expr])
 			var guard := 0
-			while not halted and eval_condition(node.condition_expr):
+			while not halted and await eval_condition(node.condition_expr):
 				guard += 1
 				if guard > MAX_LOOP_ITERATIONS:
 					fail("This loop ran more than %d times. Is it stuck in an infinite loop?" % MAX_LOOP_ITERATIONS, node)
@@ -71,7 +82,7 @@ func run_ast(nodes: Array[AST.ASTNode]):
 			
 		elif node is AST.WhileLoopNode:
 			var guard := 0
-			while not halted and eval_condition(node.condition_expr):
+			while not halted and not returning and await eval_condition(node.condition_expr):
 				guard += 1
 				if guard > MAX_LOOP_ITERATIONS:
 					fail("This loop ran more than %d times. Is it stuck in an infinite loop?" % MAX_LOOP_ITERATIONS, node)
@@ -80,35 +91,52 @@ func run_ast(nodes: Array[AST.ASTNode]):
 				
 				
 		elif node is AST.FunctionCallNode:
-			var evaluated_args: Array = []
-			for arg in node.args:
-				evaluated_args.append(evaluate_expression(arg))
-			if halted:
-				return
-			await execute_function(node.func_name, evaluated_args, node)
+			await evaluate_expression(node)
 			
 			
 		elif node is AST.IfNode:
-			var met = eval_condition(node.condition_expr)
+			var met = await eval_condition(node.condition_expr)
 			if halted:
 				return
 			if met:
 				await run_block(node.then_branch)
 			elif not node.else_branch.is_empty():
 				await run_block(node.else_branch)
-
+		
+		elif node is AST.FunctionDefNode:
+			register_function(node)
+		
+		elif node is AST.ReturnNode:
+			if call_depth == 0:
+				fail("'return' can only be used inside a function", node)
+				return
+			var result = await evaluate_expression(node.value)
+			if not halted:
+				return_value = result
+				returning = true
+			return
+		
 func execute_function(func_name: String, args: Array, node):
+	if BUILTINFUNCS.has(func_name):
+		var low: int = BUILTINFUNCS[func_name][0]
+		var high: int = BUILTINFUNCS[func_name][1]
+		if args.size() < low or args.size() > high:
+			var expected = str(low) if low == high else "%d to %d" % [low, high]
+			fail("%s() takes %s argument(s), but got %d" % [func_name, expected, args.size()], node)
+			return null
+	
 	match func_name:
 		"move":
 			if args.size() != 1:
 				fail("move() needs 1 argument, but got %d" % args.size(), node)
-				return
+				return null
 			await player.move(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""
 			$Output.text += "OUTPUT: " + text + "\n"
 		_:
 			fail("Unknown function '%s'" % func_name, node)
+	return null
 
 
 
@@ -122,9 +150,12 @@ func evaluate_expression(node):
 			return get_var(node.var_name)
 		fail("Variable '%s' doesn't exist here (not created yet, or out of scope)" % node.var_name, node)
 		return null
-
+	
+	if node is AST.FunctionCallNode:
+		return await call_function(node)
+	
 	if node is AST.UnaryOpNode:
-		var v = evaluate_expression(node.operand)
+		var v = await evaluate_expression(node.operand)
 		if halted:
 			return null
 		if node.op == "-":
@@ -138,10 +169,10 @@ func evaluate_expression(node):
 		return null
 	
 	if node is AST.BinaryOpNode:
-		var l = evaluate_expression(node.left)
+		var l = await evaluate_expression(node.left)
 		if halted:
 			return null
-		var r = evaluate_expression(node.right)
+		var r = await evaluate_expression(node.right)
 		if halted:
 			return null
 		return apply_binary(node, l, r)
@@ -223,6 +254,10 @@ func _clear_error() -> void:
 func _on_run_pressed() -> void:
 	scopes = [{}]
 	halted = false
+	functions.clear()
+	call_depth = 0
+	returning = false
+	return_value = null
 	_clear_error()
 	
 	var tokens = Lexer.tokenize($CodeEditor.text)
@@ -235,11 +270,60 @@ func _on_run_pressed() -> void:
 		_show_error(SimpleParser.errors[0].line, SimpleParser.errors[0].message)
 		return
 	
+	for node in ast:
+		if node is AST.FunctionDefNode:
+			register_function(node)
+	
 	await run_ast(ast)
 
+func register_function(def: AST.FunctionDefNode) -> void:
+	if def.func_name in BUILTINFUNCS:
+		fail("'%s' is a built-in function and can't be redefined" % def.func_name, def)
+	elif functions.has(def.func_name) and functions[def.func_name] != def:
+		fail("A function named '%s' already exists" % def.func_name, def)
+	else:
+		functions[def.func_name] = def
+		
+func call_function(node: AST.FunctionCallNode):
+	var args: Array = []
+	for arg in node.args:
+		args.append(await evaluate_expression(arg))
+		if halted:
+			return null
+	
+	if functions.has(node.func_name):
+		return await call_user_function(functions[node.func_name], args, node)
+	
+	return await execute_function(node.func_name, args, node)
+	
+func call_user_function(def: AST.FunctionDefNode, args: Array, call_node):
+	if args.size() != def.params.size():
+		fail("%s() needs %d arguments(s), but got %d" % [def.func_name, def.params.size(), args.size()], call_node)
+		return null
+	if call_depth >= MAX_CALL_DEPTH:
+		fail("Too many nested calls (over %d). Is %s() calling itself forever?" % [MAX_CALL_DEPTH, call_depth], call_node)
+		return null
+	
+	var locals := {}
+	for i in def.params.size():
+		locals[def.params[i]] = args[i]
 
+	var saved_scopes = scopes
+	var function_scopes: Array[Dictionary] = []
+	function_scopes.append(scopes[0])
+	function_scopes.append(locals)
+	scopes = function_scopes
+	call_depth += 1
 	
+	await run_ast(def.body)
 	
+	call_depth -= 1
+	scopes = saved_scopes
+	
+	var result = return_value
+	returning = false
+	return_value = null
+	return result
 	
 	
 	

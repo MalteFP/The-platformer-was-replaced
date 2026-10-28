@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddfin2ysc886i"]
 
-[ext_resource type="Script" uid="uid://c2lip6skqfb4t" path="res://editor_window.gd" id="1_r083v"]
-[ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://code_editor.tscn" id="2_7n6dd"]
+[ext_resource type="Script" uid="uid://c2lip6skqfb4t" path="res://Code Editor/editor_window.gd" id="1_r083v"]
+[ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://Code Editor/code_editor.tscn" id="2_7n6dd"]
 
 [node name="EditorWindow" type="PanelContainer" unique_id=2143128936]
 offset_left = 125.0

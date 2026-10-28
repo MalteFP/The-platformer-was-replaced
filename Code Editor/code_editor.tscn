@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mruo30i2leg8"]
 
-[ext_resource type="Script" uid="uid://co07t1lg87p6i" path="res://code_editor.gd" id="1_uoi7k"]
+[ext_resource type="Script" uid="uid://co07t1lg87p6i" path="res://Code Editor/code_editor.gd" id="1_uoi7k"]
 
 [node name="CodeEditor" type="CodeEdit" unique_id=1844267820]
 offset_right = 250.0

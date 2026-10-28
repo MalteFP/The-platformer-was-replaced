@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bik2bgxr668ko"]
 
-[ext_resource type="Script" uid="uid://7si6msfyeojs" path="res://GameInterpreter.gd" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://7si6msfyeojs" path="res://Code Editor/GameInterpreter.gd" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://player.tscn" id="2_0e48y"]
-[ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://code_editor.tscn" id="3_epypp"]
-[ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://output.tscn" id="4_0hol4"]
+[ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://Code Editor/code_editor.tscn" id="3_epypp"]
+[ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://Code Editor/output.tscn" id="4_0hol4"]
 
 [node name="GameInterpreter" type="Node2D" unique_id=97430055 node_paths=PackedStringArray("player") groups=["GameInterpreter"]]
 script = ExtResource("1_wtcfe")

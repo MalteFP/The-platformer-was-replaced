@@ -100,8 +100,54 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 			var block_result = _parse_block(tokens, i, Lexer.TokenType.RBRACE)
 			i = block_result.next_index
 			nodes.append(AST.WhileLoopNode.new(cond_result.node, block_result.nodes))
+		
+		
+		# 3. Function definition
+		elif token.type == Lexer.TokenType.IDENTIFIER and token.value == "func":
+			i += 1
+			if not _expect(tokens, i, Lexer.TokenType.IDENTIFIER, "a function name after 'func'"): continue
+			var func_name = tokens[i].value
+			i += 1
+			if not _expect(tokens, i, Lexer.TokenType.LPAREN, "'(' after the function name"): continue
+			i += 1
 			
-		# 3. Variable Assignment
+			var params: Array[String] = []
+			while errors.is_empty():
+				var t = _tok(tokens, i)
+				if t.type == Lexer.TokenType.RPAREN:
+					i += 1
+					break
+				if not _expect(tokens, i, Lexer.TokenType.IDENTIFIER, "a parameter name"):
+					break
+				if t.value in params:
+					_error("The parameter '%s' is used twice" % t.value, t)
+					break
+				params.append(t.value)
+				i += 1
+				var sep = _tok(tokens, i)
+				if sep.type == Lexer.TokenType.COMMA:
+					i += 1
+				elif sep.type != Lexer.TokenType.RPAREN:
+					_error("Expected ',' between parameters or ')' to end them, but found %s" % _describe(sep), sep)
+			if not errors.is_empty(): continue
+			i += 1
+			var func_body = _parse_block(tokens, i, Lexer.TokenType.RBRACE)
+			i = func_body.next_index
+			nodes.append(_at(AST.FunctionDefNode.new(func_name, params, func_body.nodes), token))
+		
+		# 4. Return
+		elif token.type == Lexer.TokenType.IDENTIFIER and token.value == "return":
+			i += 1
+			var value_node = null
+			var nxt = _tok(tokens, i)
+			if nxt.type != Lexer.TokenType.NEWLINE and nxt.type != Lexer.TokenType.EOF and nxt.type != Lexer.TokenType.RBRACE:
+				var value_result = _parse_value_or_expr(tokens, i)
+				value_node = value_result.node
+				i = value_result.next_index
+			nodes.append(_at(AST.ReturnNode.new(value_node), token))
+		
+		
+		# 5. Variable Assignment
 		elif token.type == Lexer.TokenType.IDENTIFIER and i + 1 < tokens.size() and tokens[i + 1].type == Lexer.TokenType.EQUALS:
 			var var_name = token.value
 			i += 2 
@@ -109,30 +155,13 @@ static func _parse_block(tokens: Array, start_index: int, end_token_type = -1) -
 			nodes.append(AST.AssignmentNode.new(var_name, expr_result.node))
 			i = expr_result.next_index
 			
-		# 4. Function Call
+		# 6. Function Call
 		elif token.type == Lexer.TokenType.IDENTIFIER and i + 1 < tokens.size() and tokens[i + 1].type == Lexer.TokenType.LPAREN:
-			var func_name = token.value
-			var args: Array = []
-			i += 2
-			while errors.is_empty():
-				var t = _tok(tokens, i)
-				if t.type == Lexer.TokenType.RPAREN:
-					i += 1
-					break
-				if t.type == Lexer.TokenType.NEWLINE or t.type == Lexer.TokenType.EOF:
-					_error("Missing ')' to close the call to %s()" % func_name, t)
-					break
-				var arg = _parse_value_or_expr(tokens, i)
-				args.append(arg.node)
-				i = arg.next_index
-				var sep = _tok(tokens, i)
-				if sep.type == Lexer.TokenType.COMMA:
-					i += 1
-				elif sep.type != Lexer.TokenType.RPAREN:
-					_error("Expected ',' between arguments or ')' to end this call, but found %s" % _describe(sep), sep)
-			nodes.append(AST.FunctionCallNode.new(func_name, args))
+			var call_result = _parse_call(tokens, i)
+			nodes.append(call_result.node)
+			i = call_result.next_index
 		
-		# 5. If statement
+		# 7. If statement
 		elif token.type == Lexer.TokenType.IDENTIFIER and token.value == "if":
 			i += 1
 			var cond_result = _parse_value_or_expr(tokens, i)
@@ -209,10 +238,38 @@ static func _parse_primary(tokens: Array, i: int) -> Dictionary:
 	if token.type == Lexer.TokenType.IDENTIFIER:
 		if token.value == "true" or token.value == "false":
 			return {"node": _at(AST.LiteralNode.new(token.value == "true"), token), "next_index": i + 1}
+		if  _tok(tokens, i + 1).type == Lexer.TokenType.LPAREN:
+			return _parse_call(tokens, i)
 		return {"node": _at(AST.VariableNode.new(token.value), token), "next_index": i + 1}
 
 	_error("Expected a value but found %s" % _describe(token), token)
 	return {"node": _at(AST.LiteralNode.new(null), token), "next_index": i}
 		
 
+static func _parse_call(tokens: Array, i: int) -> Dictionary:
+	var name_token = tokens[i]
+	var args: Array = []
+	i += 2
+	while errors.is_empty():
+		var t = _tok(tokens, i)
+		if t.type == Lexer.TokenType.RPAREN:
+			i += 1
+			break
+		if t.type == Lexer.TokenType.NEWLINE or t.type == Lexer.TokenType.EOF:
+			_error("Missing ')' to close the call to %s()" % name_token.value, t)
+			break
+		var arg = _parse_value_or_expr(tokens, i)
+		args.append(arg.node)
+		i = arg.next_index
+		var sep = _tok(tokens, i)
+		if sep.type == Lexer.TokenType.COMMA:
+			i += 1
+		elif sep.type != Lexer.TokenType.RPAREN:
+			_error("Expected ',' between arguments or ')' to end til call, but found %s" % _describe(sep), sep)
+	return {"node": _at(AST.FunctionCallNode.new(name_token.value, args), name_token), "next_index": i}
+	
+	
+	
+	
+	
 	
