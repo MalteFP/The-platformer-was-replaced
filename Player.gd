@@ -12,8 +12,8 @@ func _physics_process(delta: float) -> void:
 	frame_move(delta)
 	move_and_slide()
 
-func move(distance, speed = 1):
-	current_run = {"distance": distance, "speed": speed}
+func move(args):
+	current_run = {"distance": args[0], "speed": args[1]}
 
 func frame_move(delta):
 	velocity.x = RUNSPEED * current_run["speed"]
@@ -22,8 +22,8 @@ func frame_move(delta):
 	if velocity.x >= 0:
 		pass
 
-func jump(height):
-	velocity.y = -height
+func jump(args):
+	velocity.y = -args[0]
 	sprite.play("jump")
 
 
