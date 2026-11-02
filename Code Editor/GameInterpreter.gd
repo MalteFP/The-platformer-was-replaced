@@ -1,7 +1,7 @@
 class_name GameInterpreter
 extends Node
 
-@export var player: Node2D
+var player
 
 signal error_occurred(line: int, message: String)
 
@@ -9,7 +9,8 @@ const MAX_LOOP_ITERATIONS = 10000
 const MAX_CALL_DEPTH = 100
 const BUILTINFUNCS = {
 	"print": [1, 1],
-	"move": [1, 1]
+	"move": [1, 2],
+	"jump": [1, 1]
 }
 
 var functions: Dictionary = {}
@@ -23,6 +24,7 @@ var return_value = null
 
 func _ready() -> void:
 	error_occurred.connect(_show_error)
+	player = get_tree().get_first_node_in_group("player")
 
 func fail(message: String, node) -> void:
 	if halted:
@@ -127,10 +129,15 @@ func execute_function(func_name: String, args: Array, node):
 	
 	match func_name:
 		"move":
-			if args.size() != 1:
+			if args.size() != 2:
 				fail("move() needs 1 argument, but got %d" % args.size(), node)
 				return null
 			await player.move(args)
+		"jump":
+			if args.size() != 1:
+				fail("jump() needs 1 argument, but got %d" % args.size(), node)
+				return null
+			await player.jump(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""
 			$CanvasLayer/VSplitContainer/Output.text += "OUTPUT: " + text + "\n"
