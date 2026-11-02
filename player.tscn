@@ -1,10 +1,51 @@
 [gd_scene format=3 uid="uid://cpsowvuwkeqk2"]
 
-[ext_resource type="Script" uid="uid://d3wipqb21tpif" path="res://Player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://baawjmjna2j4f" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Death.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bgo00j3t535yd" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Idle.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://2m4l3doub4f3" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Jump.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bunvurnhk7vin" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Land.png" id="5_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://dgqrn3uhyk5va" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Run.png" id="5_dw050"]
+
+[sub_resource type="GDScript" id="GDScript_sweqy"]
+script/source = "extends CharacterBody2D
+@onready var sprite = $AnimatedSprite2D
+
+var on_ground: bool = false
+
+const MAXRUNSPEED := 100
+const MAXJUMP := -200
+
+var current_run: Dictionary = {\"distance\": 0, \"speed\": 0}
+
+func _physics_process(delta: float) -> void:
+	frame_move(delta)
+	gravity(delta)
+	move_and_slide()
+	if on_ground != is_on_floor():
+		sprite.play(\"land\")
+	on_ground = is_on_floor()
+func move(args):
+	current_run = {\"distance\": args[0], \"speed\": args[1]}
+	sprite.play(\"run\")
+
+func frame_move(delta):
+	if current_run[\"distance\"] != 0:
+		velocity.x = current_run[\"speed\"] * MAXRUNSPEED * (current_run[\"distance\"] / abs(current_run[\"distance\"]))
+		current_run[\"distance\"] = move_toward(current_run[\"distance\"], 0, abs(delta * velocity.x))
+	else:
+		velocity.x = 0
+func jump(args):
+	if is_on_floor():
+		velocity.y = args[0] * MAXJUMP
+		sprite.play(\"jump\")
+
+func gravity(delta):
+	if not is_on_floor():
+		velocity.y += 1000 * delta
+
+func death():
+	sprite.play(\"death\")
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("2_sweqy")
@@ -62,6 +103,18 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("4_1jxqw")
 region = Rect2(0, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("5_2hs0m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("5_2hs0m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iruf7"]
+atlas = ExtResource("5_2hs0m")
+region = Rect2(0, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
 atlas = ExtResource("5_dw050")
 region = Rect2(0, 0, 32, 32)
@@ -101,7 +154,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ivps1")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 10.0
 }, {
@@ -141,8 +194,22 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7ahtn")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iruf7")
+}],
+"loop": 1,
+"name": &"land",
 "speed": 5.0
 }, {
 "frames": [{
@@ -173,12 +240,11 @@ animations = [{
 size = Vector2(7.5, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
-script = ExtResource("1_4flbx")
+script = SubResource("GDScript_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
 sprite_frames = SubResource("SpriteFrames_q2j6n")
-animation = &"run"
-frame_progress = 0.8089322
+animation = &"land"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=35998]
 position = Vector2(0, 8)
