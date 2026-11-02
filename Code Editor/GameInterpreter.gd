@@ -58,6 +58,9 @@ func run_block(nodes: Array[AST.ASTNode]):
 
 func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
+		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
+		await get_tree().create_timer(0.1).timeout
+		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
 		if halted:
 			return
 			

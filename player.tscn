@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	on_ground = is_on_floor()
 func move(args):
 	current_run = {\"distance\": args[0], \"speed\": args[1]}
+	sprite.scale.x = current_run[\"distance\"] / abs(current_run[\"distance\"])
 	sprite.play(\"run\")
 
 func frame_move(delta):
