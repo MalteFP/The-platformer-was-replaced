@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 const RUNSPEED := 10
 
-var current_run: Dictionary
+var current_run: Dictionary = {"distance": 0, "speed": 0}
 
 func _physics_process(delta: float) -> void:
 	if velocity == Vector2.ZERO:
@@ -16,11 +16,11 @@ func move(distance, speed = 1):
 	current_run = {"distance": distance, "speed": speed}
 
 func frame_move(delta):
-	velocity.x = RUNSPEED * current_run.speed
+	velocity.x = RUNSPEED * current_run["speed"]
 	current_run.distance -= RUNSPEED * current_run.speed * delta
 	sprite.play("run")
 	if velocity.x >= 0:
-		sprite.scale != 1
+		pass
 
 func jump(height):
 	velocity.y = -height
