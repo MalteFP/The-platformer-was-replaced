@@ -17,7 +17,7 @@ func move(distance, speed = 1):
 
 func frame_move(delta):
 	velocity.x = RUNSPEED * current_run["speed"]
-	current_run.distance -= RUNSPEED * current_run.speed * delta
+	current_run.distance -= RUNSPEED * current_run["speed"] * delta
 	sprite.play("run")
 	if velocity.x >= 0:
 		pass

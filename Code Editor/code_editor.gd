@@ -3,7 +3,8 @@ extends CodeEdit
 var keywords: Array[Dictionary] = [
 	{"keyword": "while","color": Color.ORANGE},
 	{"keyword": "for","color": Color.ORANGE},
-	{"keyword": "if","color": Color.ORANGE}
+	{"keyword": "if","color": Color.ORANGE},
+	{"keyword": "func","color": Color.RED}
 	]
 
 func _ready() -> void:

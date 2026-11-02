@@ -172,13 +172,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
 size = Vector2(7.5, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=1084347971]
+[node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
 script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
 sprite_frames = SubResource("SpriteFrames_q2j6n")
 animation = &"run"
-frame_progress = 0.30933455
+frame_progress = 0.8089322
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=35998]
 position = Vector2(0, 8)
