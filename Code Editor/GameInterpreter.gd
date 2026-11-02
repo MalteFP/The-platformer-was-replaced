@@ -133,7 +133,7 @@ func execute_function(func_name: String, args: Array, node):
 			await player.move(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""
-			$Output.text += "OUTPUT: " + text + "\n"
+			$CanvasLayer/VSplitContainer/Output.text += "OUTPUT: " + text + "\n"
 		_:
 			fail("Unknown function '%s'" % func_name, node)
 	return null
@@ -241,15 +241,16 @@ func set_var(var_name: String, value) -> void:
 	scopes[-1][var_name] = value
 	
 func _show_error(line: int, message: String) -> void:
-	$Output.text += "Error on line %d: %s" % [line, message] + "\n"
-	if line > 0 and line <= $CodeEditor.get_line_count():
-		$CodeEditor.set_line_background_color(line - 1, Color(0.643, 0.0, 0.0, 0.631))
-		$CodeEditor.set_caret_line(line - 1)
+	$CanvasLayer/VSplitContainer/Output.text += "Error on line %d: %s" % [line, message] + "\n"
+	if line > 0 and line <= $CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.get_line_count():
+		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(line - 1, Color(0.643, 0.0, 0.0, 0.631))
+		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_caret_line(line - 1)
 
 func _clear_error() -> void:
-	$Output.text = ""
-	for l in $CodeEditor.get_line_count():
-		$CodeEditor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
+	$CanvasLayer/VSplitContainer/Output.text = ""
+	
+	for l in $CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.get_line_count():
+		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
 	scopes = [{}]
@@ -260,7 +261,7 @@ func _on_run_pressed() -> void:
 	return_value = null
 	_clear_error()
 	
-	var tokens = Lexer.tokenize($CodeEditor.text)
+	var tokens = Lexer.tokenize($CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.text)
 	if not Lexer.errors.is_empty():
 		_show_error(Lexer.errors[0].line, Lexer.errors[0].message)
 		return
