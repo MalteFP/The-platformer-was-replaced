@@ -22,6 +22,9 @@ var call_depth := 0
 var returning := false
 var return_value = null
 
+@onready var code_editor = $CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor
+@onready var output = $CanvasLayer/VSplitContainer/Output
+
 func _ready() -> void:
 	error_occurred.connect(_show_error)
 	player = get_tree().get_first_node_in_group("player")
@@ -130,7 +133,7 @@ func execute_function(func_name: String, args: Array, node):
 	match func_name:
 		"move":
 			if args.size() != 2:
-				fail("move() needs 1 argument, but got %d" % args.size(), node)
+				fail("move() needs 2 argument, but got %d" % args.size(), node)
 				return null
 			await player.move(args)
 		"jump":
@@ -140,7 +143,7 @@ func execute_function(func_name: String, args: Array, node):
 			await player.jump(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""
-			$CanvasLayer/VSplitContainer/Output.text += "OUTPUT: " + text + "\n"
+			output.text += "OUTPUT: " + text + "\n"
 		_:
 			fail("Unknown function '%s'" % func_name, node)
 	return null
@@ -248,16 +251,16 @@ func set_var(var_name: String, value) -> void:
 	scopes[-1][var_name] = value
 	
 func _show_error(line: int, message: String) -> void:
-	$CanvasLayer/VSplitContainer/Output.text += "Error on line %d: %s" % [line, message] + "\n"
-	if line > 0 and line <= $CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.get_line_count():
-		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(line - 1, Color(0.643, 0.0, 0.0, 0.631))
-		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_caret_line(line - 1)
+	output.text += "Error on line %d: %s" % [line, message] + "\n"
+	if line > 0 and line <= code_editor.get_line_count():
+		code_editor.set_line_background_color(line - 1, Color(0.643, 0.0, 0.0, 0.631))
+		code_editor.set_caret_line(line - 1)
 
 func _clear_error() -> void:
-	$CanvasLayer/VSplitContainer/Output.text = ""
+	output.text = ""
 	
-	for l in $CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.get_line_count():
-		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
+	for l in code_editor.get_line_count():
+		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
 	scopes = [{}]
@@ -268,7 +271,7 @@ func _on_run_pressed() -> void:
 	return_value = null
 	_clear_error()
 	
-	var tokens = Lexer.tokenize($CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.text)
+	var tokens = Lexer.tokenize(code_editor.text)
 	if not Lexer.errors.is_empty():
 		_show_error(Lexer.errors[0].line, Lexer.errors[0].message)
 		return

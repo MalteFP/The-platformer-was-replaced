@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://b67ugi4rxtx6n"]
+[gd_scene format=3 uid="uid://b67ugi4rxtx6n"]
 
 [ext_resource type="Texture2D" uid="uid://c8u4a8ewmyj2u" path="res://textures/Tileset&Items.png" id="1_f0hoy"]
 
@@ -25,13 +25,13 @@ texture = ExtResource("1_f0hoy")
 2:0/0/terrains_peering_bit/bottom_left_corner = 0
 2:0/0/terrains_peering_bit/left_side = 0
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -1.4388695, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -0.17985725, 8, 8, -8, 8)
 4:0/0 = 0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.8992939, 8, 8, 8, 8, -8, 8)
 5:0/0 = 0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -0.8992939, 8, 8, -8, 8)
 6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4388695, 8, -8, 8, 8, -8, 8)
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.5395756, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0 = 0
@@ -231,5 +231,4 @@ sources/2 = SubResource("TileSetAtlasSource_eu68t")
 [node name="Node2D" type="Node2D" unique_id=1061197234]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=448091701]
-tile_map_data = PackedByteArray("AAAMAAEAAAADAAAAAAAMAAIAAAADAAEAAAANAAEAAAAEAAAAAAANAAIAAAAEAAEAAAAOAAIAAAADAAAAAAAOAAMAAAADAAEAAAAPAAIAAAAEAAAAAAAPAAMAAAAEAAEAAAAQAAMAAAADAAAAAAAQAAQAAAADAAEAAAARAAMAAAAEAAAAAAARAAQAAAAEAAEAAAASAAQAAAADAAAAAAASAAUAAAADAAEAAAATAAQAAAAEAAAAAAATAAUAAAAEAAEAAAAUAAUAAAADAAAAAAAUAAYAAAADAAEAAAAVAAUAAAAEAAAAAAAVAAYAAAAEAAEAAAA=")
 tile_set = SubResource("TileSet_l0bqs")
