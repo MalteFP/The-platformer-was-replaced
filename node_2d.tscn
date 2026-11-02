@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://8pffwaxk6oli"]
+[gd_scene format=3 uid="uid://bik2bgxr668ko"]
 
 [ext_resource type="Script" uid="uid://7si6msfyeojs" path="res://Code Editor/GameInterpreter.gd" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://player.tscn" id="2_0e48y"]
 [ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://Code Editor/code_editor.tscn" id="3_epypp"]
 [ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://Code Editor/output.tscn" id="4_0hol4"]
 
-[node name="GameInterpreter" type="Control" unique_id=1870526410 node_paths=PackedStringArray("player") groups=["GameInterpreter"]]
+[node name="GameInterpreter" type="Control" unique_id=1870526410 groups=["GameInterpreter"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_wtcfe")
-player = NodePath("Player")
 
 [node name="Player" parent="." unique_id=1617328749 instance=ExtResource("2_0e48y")]
 

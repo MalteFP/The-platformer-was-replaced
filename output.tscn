@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://2tnqkstmwdq3"]
-
-[ext_resource type="Script" path="res://output.gd" id="1_rhkpb"]
-
-[node name="Output" type="CodeEdit" unique_id=1532310492]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_rhkpb")
