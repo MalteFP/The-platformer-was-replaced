@@ -2,12 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://player.tscn" id="1_612pj"]
 [ext_resource type="PackedScene" uid="uid://b67ugi4rxtx6n" path="res://TileMap.tscn" id="2_asog6"]
-<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="3_mawog"]
-=======
 [ext_resource type="PackedScene" uid="uid://3f1arpehtgys" path="res://Coins.tscn" id="3_asog6"]
 [ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://UI.tscn" id="3_mawog"]
->>>>>>> 874518d9144ecc51f49bb5fb0ae4a157cf847ce1
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mawog"]
 scenes/1/scene = ExtResource("3_asog6")
