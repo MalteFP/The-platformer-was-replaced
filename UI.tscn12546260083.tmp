@@ -15,7 +15,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+<<<<<<< HEAD:UI.tscn12546260083.tmp
 script = ExtResource("1_g6l6n")
+=======
+script = ExtResource("1_wtcfe")
+
+[node name="Player" parent="." unique_id=1617328749 instance=ExtResource("2_0e48y")]
+>>>>>>> 874518d9144ecc51f49bb5fb0ae4a157cf847ce1:node_2d.tscn
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1423294835]
 
