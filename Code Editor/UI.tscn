@@ -67,9 +67,11 @@ text = "run"
 position = Vector2(1021, 16)
 texture = ExtResource("4_tb60t")
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=2070575868]
+[node name="CoinCount" type="Label" parent="CanvasLayer" unique_id=2070575868]
 offset_left = 1061.0
 offset_right = 1101.0
 offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/run" to="." method="_on_run_pressed"]

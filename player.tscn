@@ -18,6 +18,8 @@ const MAXJUMP := -200
 
 var current_run: Dictionary = {\"distance\": 0, \"speed\": 0}
 
+var coinCount = 0
+
 func _physics_process(delta: float) -> void:
 	frame_move(delta)
 	gravity(delta)
