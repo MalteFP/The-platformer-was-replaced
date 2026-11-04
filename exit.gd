@@ -6,4 +6,5 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	if body.name == "Player":
 		ScreenHolder.currentScreenNum += 1
 		ScreenHolder.currentScreenName = "Level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
+		ScreenHolder.code_Saver = $"../../../Player/GameInterpreter/CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor".text
 		get_tree().change_scene_to_file(ScreenHolder.currentScreenName) # Replace with function body.
