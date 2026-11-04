@@ -253,7 +253,7 @@ script = SubResource("GDScript_sweqy")
 sprite_frames = SubResource("SpriteFrames_q2j6n")
 animation = &"land"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=35998]
+[node name="player" type="CollisionShape2D" parent="." unique_id=35998]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_84s55")
 

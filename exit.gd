@@ -7,3 +7,4 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 		ScreenHolder.currentScreenNum += 1
 		ScreenHolder.currentScreenName = "screens/level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
 		get_tree().change_scene_to_file(ScreenHolder.currentScreenName)
+		
