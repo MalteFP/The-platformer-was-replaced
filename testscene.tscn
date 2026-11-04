@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://player.tscn" id="1_612pj"]
 [ext_resource type="PackedScene" uid="uid://b67ugi4rxtx6n" path="res://TileMap.tscn" id="2_asog6"]
 [ext_resource type="PackedScene" uid="uid://3f1arpehtgys" path="res://Coins.tscn" id="3_asog6"]
-[ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="3_mawog"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mawog"]
 scenes/1/scene = ExtResource("3_asog6")
@@ -22,13 +21,7 @@ tile_map_data = PackedByteArray("AAAUAAYAAgAGAAAAAAAVAAUAAgAFAAAAAAAVAAYAAgAFAAE
 tile_map_data = PackedByteArray("AAAdAAIAAAAAAAAAAQAeAAEAAAAAAAAAAQAfAAEAAAAAAAAAAQAgAAEAAAAAAAAAAQAhAAIAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_l0bqs")
 
-[node name="GameInterpreter" parent="." unique_id=1870526410 instance=ExtResource("3_mawog")]
-offset_left = -584.0
-offset_top = -301.0
-offset_right = -584.0
-offset_bottom = -301.0
-
 [node name="Player" parent="." unique_id=1084347971 instance=ExtResource("1_612pj")]
-position = Vector2(211, 95)
+position = Vector2(245, 93)
 
 [editable path="Node2D"]

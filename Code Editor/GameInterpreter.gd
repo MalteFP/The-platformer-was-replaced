@@ -28,6 +28,13 @@ var return_value = null
 func _ready() -> void:
 	error_occurred.connect(_show_error)
 	player = get_tree().get_first_node_in_group("player")
+	code_editor.text = ScreenHolder.code_Saver
+	ScreenHolder.code_Saver = ""
+	if ScreenHolder.run_on_next_enter:
+		run_code()
+		ScreenHolder.run_on_next_enter = false
+		pass
+	
 
 func fail(message: String, node) -> void:
 	if halted:
@@ -61,9 +68,9 @@ func run_block(nodes: Array[AST.ASTNode]):
 
 func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
-		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
+		code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
 		await get_tree().create_timer(0.1).timeout
-		$CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
+		code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
 		if halted:
 			return
 			
@@ -266,6 +273,14 @@ func _clear_error() -> void:
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
+	ScreenHolder.code_Saver = code_editor.text
+	ScreenHolder.run_on_next_enter = true
+	get_tree().change_scene_to_file("res://testscene.tscn")
+	
+	
+	
+func run_code() -> void:
+	print("test")
 	scopes = [{}]
 	halted = false
 	functions.clear()
