@@ -32,10 +32,38 @@ size_flags_stretch_ratio = 10.0
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
-split_offsets = PackedInt32Array(48)
-split_offset = 48
 
-[node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer" unique_id=1844267820 instance=ExtResource("2_qui0h")]
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/VSplitContainer/HSplitContainer" unique_id=193037633]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+split_offsets = PackedInt32Array(363)
+split_offset = 363
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1030363504]
+custom_minimum_size = Vector2(0, 20)
+custom_maximum_size = Vector2(-1, 20)
+layout_mode = 2
+split_offsets = PackedInt32Array(0, 0)
+
+[node name="run" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=1903476606]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+text = "run"
+
+[node name="step" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=893645759]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "step"
+
+[node name="pause" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=157626674]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause
+"
+
+[node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1844267820 instance=ExtResource("2_qui0h")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
@@ -52,14 +80,6 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="run" type="Button" parent="CanvasLayer" unique_id=1903476606]
-z_index = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -50.0
-offset_bottom = 50.0
-grow_horizontal = 0
-text = "run"
-
-[connection signal="pressed" from="CanvasLayer/run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/step" to="." method="_on_step_pressed"]
+[connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/pause" to="." method="_on_pause_pressed"]
