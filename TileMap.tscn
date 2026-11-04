@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b67ugi4rxtx6n"]
 
 [ext_resource type="Texture2D" uid="uid://c8u4a8ewmyj2u" path="res://textures/Tileset&Items.png" id="1_f0hoy"]
+[ext_resource type="PackedScene" uid="uid://3f1arpehtgys" path="res://Coins.tscn" id="2_eu68t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eu68t"]
 texture = ExtResource("1_f0hoy")
@@ -228,7 +229,16 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_eu68t")
 
-[node name="Node2D" type="Node2D" unique_id=1061197234]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6qhk7"]
+scenes/1/scene = ExtResource("2_eu68t")
+
+[sub_resource type="TileSet" id="TileSet_xtnfd"]
+sources/0 = SubResource("TileSetScenesCollectionSource_6qhk7")
+
+[node name="TileMaps" type="Node2D" unique_id=1061197234]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=448091701]
 tile_set = SubResource("TileSet_l0bqs")
+
+[node name="Items" type="TileMapLayer" parent="." unique_id=679792047]
+tile_set = SubResource("TileSet_xtnfd")
