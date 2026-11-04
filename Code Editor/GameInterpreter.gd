@@ -71,7 +71,8 @@ func run_block(nodes: Array[AST.ASTNode]):
 
 func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
-		code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
+		if node.line -1 >= 0:
+			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
 		while paused and !step_requested:
 			await get_tree().process_frame
 		
@@ -291,7 +292,6 @@ func _on_run_pressed() -> void:
 	
 	
 func run_code() -> void:
-	print("test")
 	scopes = [{}]
 	halted = false
 	functions.clear()
