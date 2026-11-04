@@ -16,28 +16,31 @@ var on_ground: bool = false
 const MAXRUNSPEED := 100
 const MAXJUMP := -200
 
-var current_run: Dictionary = {\"distance\": 0, \"speed\": 0}
+var moving = 0
 
 
 
 func _physics_process(delta: float) -> void:
-	frame_move(delta)
+	frame_move()
 	gravity(delta)
 	move_and_slide()
 	if on_ground != is_on_floor():
 		sprite.play(\"land\")
 	on_ground = is_on_floor()
-func move(args):
-	current_run = {\"distance\": args[0], \"speed\": args[1]}
-	sprite.scale.x = current_run[\"distance\"] / abs(current_run[\"distance\"])
-	sprite.play(\"run\")
+func move_right():
+	moving = 1
 
-func frame_move(delta):
-	if current_run[\"distance\"] != 0:
-		velocity.x = current_run[\"speed\"] * MAXRUNSPEED * (current_run[\"distance\"] / abs(current_run[\"distance\"]))
-		current_run[\"distance\"] = move_toward(current_run[\"distance\"], 0, abs(delta * velocity.x))
-	else:
-		velocity.x = 0
+func move_left():
+	moving = -1
+
+func move_stop():
+	moving = 0
+
+func wait(args):
+	await get_tree().create_timer(args[0]).timeout
+
+func frame_move():
+	velocity.x = moving * MAXRUNSPEED
 func jump(args):
 	if is_on_floor():
 		velocity.y = args[0] * MAXJUMP
