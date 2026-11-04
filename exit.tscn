@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwap44vrfagn1"]
 
 [ext_resource type="Script" uid="uid://d2572crxbliu7" path="res://exit.gd" id="1_6sfst"]
+[ext_resource type="Texture2D" uid="uid://hnl6k66bktl5" path="res://textures/Coin.png" id="2_24kvk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bqs"]
 
@@ -11,5 +12,8 @@ script = ExtResource("1_6sfst")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1854122346]
 shape = SubResource("RectangleShape2D_l0bqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127262179]
+texture = ExtResource("2_24kvk")
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

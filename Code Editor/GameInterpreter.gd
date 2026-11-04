@@ -286,7 +286,7 @@ func _clear_error() -> void:
 func _on_run_pressed() -> void:
 	ScreenHolder.code_Saver = code_editor.text
 	ScreenHolder.run_on_next_enter = true
-	get_tree().change_scene_to_file("res://testscene.tscn")
+	get_tree().change_scene_to_file(ScreenHolder.currentScreenName)
 	
 	
 	
