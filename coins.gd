@@ -13,5 +13,3 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	hide()
-	$"../../../Player".coinCount += 1
-	$"../../../Player/GameInterpreter/CanvasLayer/CoinCount".text = str($"../../../Player".coinCount)
