@@ -54,6 +54,9 @@ func death():
 	sprite.play(\"death\")
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
+size = Vector2(7.5, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(0, 0, 32, 32)
@@ -243,20 +246,22 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
-size = Vector2(7.5, 16)
-
-[node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
 script = SubResource("GDScript_sweqy")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
-sprite_frames = SubResource("SpriteFrames_q2j6n")
-animation = &"land"
 
 [node name="player" type="CollisionShape2D" parent="." unique_id=35998]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_84s55")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
+sprite_frames = SubResource("SpriteFrames_q2j6n")
+animation = &"land"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2086737712]
 
 [node name="GameInterpreter" parent="." unique_id=1870526410 instance=ExtResource("6_2hs0m")]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
+metadata/_edit_use_anchors_ = true

@@ -3,8 +3,7 @@ var carry_velocity := Vector2.ZERO
 
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.name == "player":
+	if body.name == "Player":
 		ScreenHolder.currentScreenNum += 1
-		ScreenHolder.currentScreenName = "screens/level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
-		get_tree().change_scene_to_file(ScreenHolder.currentScreenName)
-		
+		ScreenHolder.currentScreenName = "Level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
+		get_tree().change_scene_to_file(ScreenHolder.currentScreenName) # Replace with function body.
