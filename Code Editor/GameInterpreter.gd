@@ -9,7 +9,10 @@ const MAX_LOOP_ITERATIONS = 10000
 const MAX_CALL_DEPTH = 100
 const BUILTINFUNCS = {
 	"print": [1, 1],
-	"move": [1, 2],
+	"move_left": [0, 0],
+	"move_right": [0, 0],
+	"move_stop": [0, 0],
+	"wait": [1, 1],
 	"jump": [1, 1]
 }
 
@@ -153,15 +156,15 @@ func execute_function(func_name: String, args: Array, node):
 			return null
 	
 	match func_name:
-		"move":
-			if args.size() != 2:
-				fail("move() needs 2 argument, but got %d" % args.size(), node)
-				return null
-			await player.move(args)
+		"move_left":
+			await player.move_left()
+		"move_right":
+			await player.move_right()
+		"move_stop":
+			await player.move_stop()
+		"wait":
+			await player.wait(args)
 		"jump":
-			if args.size() != 1:
-				fail("jump() needs 1 argument, but got %d" % args.size(), node)
-				return null
 			await player.jump(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""

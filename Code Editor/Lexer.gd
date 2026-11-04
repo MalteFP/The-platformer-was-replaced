@@ -39,7 +39,20 @@ static func tokenize(code: String) -> Array[Token]:
 					tokens.append(Token.new(TokenType.OPERATOR, two_chars))
 					i += 2
 					continue
-			
+			if c.is_valid_int() or (c == "." and i + 1 < trimmed.length() and trimmed[i + 1].is_valid_int()):
+				var num_start = i
+				var seen_dot = false
+				while i < trimmed.length():
+					var d = trimmed[i]
+					if d.is_valid_int():
+						i += 1
+					elif d == "." and not seen_dot:
+						seen_dot = true
+						i += 1
+					else:
+						break
+				tokens.append(Token.new(TokenType.NUMBER, trimmed.substr(num_start, i - num_start)))
+				continue
 			match c:
 				"(":
 					tokens.append(Token.new(TokenType.LPAREN, "("))
