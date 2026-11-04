@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bkbkphehjl516"]
+
+[ext_resource type="Texture2D" uid="uid://cidgla3oqkmoa" path="res://textures/backgrounds/MountainsLayers/sky.png" id="1_3v5rv"]
+[ext_resource type="Texture2D" uid="uid://bbw3l7ns3qacb" path="res://textures/backgrounds/MountainsLayers/far-clouds.png" id="2_klpt2"]
+[ext_resource type="Texture2D" uid="uid://nei8g3fblyr7" path="res://textures/backgrounds/MountainsLayers/near-clouds.png" id="3_1ouxo"]
+[ext_resource type="Texture2D" uid="uid://cub65x0y0ym76" path="res://textures/backgrounds/MountainsLayers/mountains.png" id="4_7wnu8"]
+[ext_resource type="Texture2D" uid="uid://dxjs1s2ge2yl0" path="res://textures/backgrounds/MountainsLayers/trees.png" id="5_ft14n"]
+
+[node name="Parallax2D" type="Node2D" unique_id=811717371]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903590207]
+texture = ExtResource("1_3v5rv")
+centered = false
+
+[node name="Far-clouds" type="Parallax2D" parent="." unique_id=532169953]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Far-clouds" unique_id=550362217]
+texture = ExtResource("2_klpt2")
+centered = false
+
+[node name="near - clouds" type="Parallax2D" parent="." unique_id=134051524]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(144, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="near - clouds" unique_id=1247243392]
+texture = ExtResource("3_1ouxo")
+centered = false
+
+[node name="mountains" type="Parallax2D" parent="." unique_id=2137312561]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="mountains" unique_id=1283460798]
+texture = ExtResource("4_7wnu8")
+centered = false
+
+[node name="trees" type="Parallax2D" parent="." unique_id=10632387]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(240, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="trees" unique_id=1466485608]
+texture = ExtResource("5_ft14n")
+centered = false

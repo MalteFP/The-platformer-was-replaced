@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://cpsowvuwkeqk2"]
+
+[ext_resource type="Script" uid="uid://d1ggrf0c57cy" path="res://gameplay/player/player.gd" id="1_ahkyy"]
+[ext_resource type="Texture2D" uid="uid://jbyxujirmufw" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot6.png" id="3_dvxkk"]
+[ext_resource type="Texture2D" uid="uid://s5srrjqnbgf0" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_SpriteSheet.png" id="3_e85hc"]
+[ext_resource type="Texture2D" uid="uid://cmgf6ravkfoc0" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot1.png" id="3_k8msr"]
+[ext_resource type="Texture2D" uid="uid://w51iywjgemvm" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot2.png" id="4_2iayx"]
+[ext_resource type="Texture2D" uid="uid://piq2wtqkv1n2" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot7.png" id="4_d14h3"]
+[ext_resource type="Texture2D" uid="uid://vx3ddp6x3mib" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot3.png" id="5_0tpqw"]
+[ext_resource type="Texture2D" uid="uid://ctwq8qgg5uhob" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot8.png" id="5_lh4hn"]
+[ext_resource type="Texture2D" uid="uid://dpxvna5ufhjrl" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot4.png" id="6_dtclg"]
+[ext_resource type="Texture2D" uid="uid://dlm2hybebuey3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot9.png" id="6_fty7g"]
+[ext_resource type="Texture2D" uid="uid://jdm35f7u2dow" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot10.png" id="7_chlpi"]
+[ext_resource type="Script" uid="uid://cieus0kv5wa1s" path="res://gameplay/player/camera_2d.gd" id="7_e85hc"]
+[ext_resource type="Texture2D" uid="uid://cykii1q0dwye3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot5.png" id="7_fath0"]
+[ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="7_fty7g"]
+[ext_resource type="Texture2D" uid="uid://dsv47lns74t0e" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot11.png" id="8_k8msr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_011tu"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uk1t"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo1cy"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahkyy"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fty7g"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chlpi"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8msr"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iayx"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tpqw"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtclg"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fath0"]
+atlas = ExtResource("3_e85hc")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2j6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_011tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uk1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo1cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahkyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fty7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chlpi")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k8msr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2iayx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0tpqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dtclg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fath0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8msr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iayx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tpqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtclg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fath0")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_d14h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lh4hn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fty7g")
+}],
+"loop": 0,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dvxkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d14h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lh4hn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fty7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_chlpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k8msr")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
+size = Vector2(7.5, 16)
+
+[node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
+script = ExtResource("1_ahkyy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
+sprite_frames = SubResource("SpriteFrames_q2j6n")
+animation = &"jump"
+autoplay = "idle"
+
+[node name="player" type="CollisionShape2D" parent="." unique_id=35998]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_84s55")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2086737712]
+zoom = Vector2(3, 3)
+script = ExtResource("7_e85hc")
+
+[node name="GameInterpreter" parent="." unique_id=1870526410 instance=ExtResource("7_fty7g")]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

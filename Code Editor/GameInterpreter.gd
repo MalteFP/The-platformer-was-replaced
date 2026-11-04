@@ -13,7 +13,7 @@ const BUILTINFUNCS = {
 	"move_right": [0, 0],
 	"move_stop": [0, 0],
 	"wait": [1, 1],
-	"jump": [1, 1]
+	"jump": [0, 1]
 }
 
 var functions: Dictionary = {}
@@ -291,7 +291,6 @@ func _on_run_pressed() -> void:
 	ScreenHolder.code_Saver = code_editor.text
 	ScreenHolder.run_on_next_enter = true
 	get_tree().change_scene_to_file(ScreenHolder.currentScreenName)
-	
 	
 	
 func run_code() -> void:

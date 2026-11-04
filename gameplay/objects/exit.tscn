@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cwap44vrfagn1"]
+
+[ext_resource type="Script" uid="uid://d2572crxbliu7" path="res://gameplay/objects/exit.gd" id="1_ly6ds"]
+[ext_resource type="Texture2D" uid="uid://hnl6k66bktl5" path="res://textures/robot pack/Coin.png" id="2_ntvr0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bqs"]
+
+[node name="Exit" type="Node2D" unique_id=1515419442]
+script = ExtResource("1_ly6ds")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=486850575]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1854122346]
+shape = SubResource("RectangleShape2D_l0bqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127262179]
+texture = ExtResource("2_ntvr0")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

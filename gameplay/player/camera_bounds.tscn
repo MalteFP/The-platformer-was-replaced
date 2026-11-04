@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dusri61lcyuot"]
+
+[node name="Camera Bounds" type="Polygon2D" unique_id=543013079 groups=["Camera Bounds"]]
