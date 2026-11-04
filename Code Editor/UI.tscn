@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7si6msfyeojs" path="res://Code Editor/GameInterpreter.gd" id="1_g6l6n"]
 [ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://Code Editor/code_editor.tscn" id="2_qui0h"]
 [ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://Code Editor/output.tscn" id="3_vrfts"]
+[ext_resource type="Texture2D" uid="uid://cqqtwd6hqcu4d" path="res://textures/Coins.png" id="4_tb60t"]
 
 [node name="GameInterpreter" type="Control" unique_id=1870526410 groups=["GameInterpreter"]]
 layout_mode = 3
@@ -80,6 +81,27 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 
+
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/run" to="." method="_on_run_pressed"]
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/step" to="." method="_on_step_pressed"]
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/pause" to="." method="_on_pause_pressed"]
+
+[node name="run" type="Button" parent="CanvasLayer" unique_id=1903476606]
+z_index = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "run"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1039947667]
+position = Vector2(1021, 16)
+texture = ExtResource("4_tb60t")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2070575868]
+offset_left = 1061.0
+offset_right = 1101.0
+offset_bottom = 23.0
+
