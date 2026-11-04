@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbw3l7ns3qacb"
-path="res://.godot/imported/far-clouds.png-757b8e211169a4f80e812646583010e1.ctex"
+uid="uid://23i81cr0du0l"
+path="res://.godot/imported/bg2.png-0285152c0742a8a4ac518224822c37e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/backgrounds/MountainsLayers/far-clouds.png"
-dest_files=["res://.godot/imported/far-clouds.png-757b8e211169a4f80e812646583010e1.ctex"]
+source_file="res://textures/backgrounds/mountain/bg2.png"
+dest_files=["res://.godot/imported/bg2.png-0285152c0742a8a4ac518224822c37e3.ctex"]
 
 [params]
 

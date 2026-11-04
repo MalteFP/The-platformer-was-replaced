@@ -14,7 +14,10 @@
 [ext_resource type="Script" uid="uid://cieus0kv5wa1s" path="res://gameplay/player/camera_2d.gd" id="7_e85hc"]
 [ext_resource type="Texture2D" uid="uid://cykii1q0dwye3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot5.png" id="7_fath0"]
 [ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="7_fty7g"]
+[ext_resource type="Texture2D" uid="uid://c8jkn7fbudsw3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot17.png" id="8_dtclg"]
 [ext_resource type="Texture2D" uid="uid://dsv47lns74t0e" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot11.png" id="8_k8msr"]
+[ext_resource type="Texture2D" uid="uid://diricgwjdisn" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot18.png" id="9_fath0"]
+[ext_resource type="Texture2D" uid="uid://dmqbt86qp6qif" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot19.png" id="10_u5hhf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_011tu"]
 atlas = ExtResource("3_e85hc")
@@ -127,13 +130,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_d14h3")
+"texture": ExtResource("8_dtclg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_lh4hn")
+"texture": ExtResource("9_fath0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_fty7g")
+"texture": ExtResource("10_u5hhf")
 }],
 "loop": 0,
 "name": &"land",
@@ -171,7 +174,7 @@ script = ExtResource("1_ahkyy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
 sprite_frames = SubResource("SpriteFrames_q2j6n")
-animation = &"jump"
+animation = &"run"
 autoplay = "idle"
 
 [node name="player" type="CollisionShape2D" parent="." unique_id=35998]
@@ -180,6 +183,8 @@ shape = SubResource("RectangleShape2D_84s55")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2086737712]
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
 script = ExtResource("7_e85hc")
 
 [node name="GameInterpreter" parent="." unique_id=1870526410 instance=ExtResource("7_fty7g")]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcnsdxg457gf4"
-path="res://.godot/imported/far-mountains.png-f3d41eee74113849799c033f14dd3b03.ctex"
+uid="uid://2rc4n8xyat33"
+path="res://.godot/imported/tileset.png-c58e1bf82d47fc19d60aef6c7192e952.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/backgrounds/MountainsLayers/far-mountains.png"
-dest_files=["res://.godot/imported/far-mountains.png-f3d41eee74113849799c033f14dd3b03.ctex"]
+source_file="res://textures/tileset.png"
+dest_files=["res://.godot/imported/tileset.png-c58e1bf82d47fc19d60aef6c7192e952.ctex"]
 
 [params]
 

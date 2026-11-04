@@ -13,7 +13,8 @@ const BUILTINFUNCS = {
 	"move_right": [0, 0],
 	"move_stop": [0, 0],
 	"wait": [1, 1],
-	"jump": [0, 1]
+	"jump": [0, 1],
+	"dash": [1, 1]
 }
 
 var functions: Dictionary = {}
@@ -82,7 +83,7 @@ func run_ast(nodes: Array[AST.ASTNode]):
 		if step_requested:
 			step_requested = false
 		
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.01).timeout
 		if node.line - 1 != -1:
 			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
 
@@ -166,6 +167,8 @@ func execute_function(func_name: String, args: Array, node):
 			await player.wait(args)
 		"jump":
 			await player.jump(args)
+		"dash":
+			await player.dash(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""
 			output.text += "OUTPUT: " + text + "\n"

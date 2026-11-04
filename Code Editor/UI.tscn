@@ -50,18 +50,17 @@ split_offsets = PackedInt32Array(0, 0)
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
-text = "run"
+text = "▶️"
 
 [node name="step" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=893645759]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "step"
+text = "⏭️"
 
 [node name="pause" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=157626674]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Pause
-"
+text = "⏸️"
 
 [node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1844267820 instance=ExtResource("2_qui0h")]
 layout_mode = 2
