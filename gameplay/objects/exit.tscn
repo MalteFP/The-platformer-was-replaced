@@ -8,12 +8,18 @@
 [node name="Exit" type="Node2D" unique_id=1515419442]
 script = ExtResource("1_ly6ds")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127262179]
+texture = ExtResource("2_24kvk")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=486850575]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1854122346]
 shape = SubResource("RectangleShape2D_l0bqs")
 
+<<<<<<< HEAD:gameplay/objects/exit.tscn
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=127262179]
 texture = ExtResource("2_ntvr0")
 
+=======
+>>>>>>> 82f0222043012ecf9bcc63e5bf6ee0403fedce48:exit.tscn
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

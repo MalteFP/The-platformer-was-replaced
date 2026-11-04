@@ -10,7 +10,6 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903590207]
 texture = ExtResource("1_3v5rv")
-centered = false
 
 [node name="Far-clouds" type="Parallax2D" parent="." unique_id=532169953]
 scroll_scale = Vector2(0.2, 0.2)
@@ -18,7 +17,6 @@ repeat_size = Vector2(128, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Far-clouds" unique_id=550362217]
 texture = ExtResource("2_klpt2")
-centered = false
 
 [node name="near - clouds" type="Parallax2D" parent="." unique_id=134051524]
 scroll_scale = Vector2(0.4, 0.4)
@@ -26,7 +24,6 @@ repeat_size = Vector2(144, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="near - clouds" unique_id=1247243392]
 texture = ExtResource("3_1ouxo")
-centered = false
 
 [node name="mountains" type="Parallax2D" parent="." unique_id=2137312561]
 scroll_scale = Vector2(0.6, 0.6)
@@ -34,7 +31,6 @@ repeat_size = Vector2(320, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="mountains" unique_id=1283460798]
 texture = ExtResource("4_7wnu8")
-centered = false
 
 [node name="trees" type="Parallax2D" parent="." unique_id=10632387]
 scroll_scale = Vector2(0.8, 0.8)
@@ -42,4 +38,3 @@ repeat_size = Vector2(240, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="trees" unique_id=1466485608]
 texture = ExtResource("5_ft14n")
-centered = false
