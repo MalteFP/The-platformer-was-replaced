@@ -22,7 +22,10 @@ var call_depth := 0
 var returning := false
 var return_value = null
 
-@onready var code_editor = $CanvasLayer/VSplitContainer/HSplitContainer/CodeEditor
+var paused = false
+var step_requested = false
+
+@onready var code_editor = $CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor
 @onready var output = $CanvasLayer/VSplitContainer/Output
 
 func _ready() -> void:
@@ -69,8 +72,16 @@ func run_block(nodes: Array[AST.ASTNode]):
 func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
 		code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
+		while paused and !step_requested:
+			await get_tree().process_frame
+		
+		if step_requested:
+			step_requested = false
+		
 		await get_tree().create_timer(0.1).timeout
-		code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
+		if node.line - 1 != -1:
+			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
+
 		if halted:
 			return
 			
@@ -357,3 +368,13 @@ func call_user_function(def: AST.FunctionDefNode, args: Array, call_node):
 	
 	
 	
+
+
+func _on_step_pressed() -> void:
+	step_requested = true
+
+
+
+
+func _on_pause_pressed() -> void:
+	paused = !paused
