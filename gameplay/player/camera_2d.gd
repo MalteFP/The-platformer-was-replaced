@@ -22,7 +22,13 @@ func _ready() -> void:
 			closest_point(camera_bounds.to_local(target), region)
 		)
 
-
+func _process(_delta: float) -> void:
+	var region = get_valid_region(zoom)
+	var target = global_position
+	if region.size() >= 3:
+		global_position = camera_bounds.to_global(
+			closest_point(camera_bounds.to_local(target), region)
+		)
 func _input(event: InputEvent) -> void:
 
 
