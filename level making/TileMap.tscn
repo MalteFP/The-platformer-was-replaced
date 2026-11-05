@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://cwap44vrfagn1" path="res://gameplay/objects/exit.tscn" id="4_ijum1"]
 [ext_resource type="PackedScene" uid="uid://cvbs0sg4o3ybj" path="res://Spikes.tscn" id="5_lq85f"]
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_lq85f"]
+tile_data = PackedInt32Array(0, 1, 9, 1, 65537, 9, 2, 131073, 9)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_j8f24"]
+tile_data = PackedInt32Array(0, 1, 7, 1, 65537, 7, 2, 131073, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_088bw"]
+tile_data = PackedInt32Array(0, 196609, 7, 1, 262145, 7, 2, 327681, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ty5qo"]
+tile_data = PackedInt32Array(0, 983041, 0, 65536, 983041, 1, 1, 1048577, 0, 65537, 1048577, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2n50j"]
+tile_data = PackedInt32Array(0, 917505, 1)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wc0c"]
 texture = ExtResource("1_rx657")
 0:0/0 = 0
@@ -367,6 +382,11 @@ terrain_set_0/terrain_0/name = "Building blocks"
 terrain_set_0/terrain_0/color = Color(0.5, 0.4375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_eu68t")
 sources/1 = SubResource("TileSetAtlasSource_1wc0c")
+pattern_0 = SubResource("TileMapPattern_lq85f")
+pattern_1 = SubResource("TileMapPattern_j8f24")
+pattern_2 = SubResource("TileMapPattern_088bw")
+pattern_3 = SubResource("TileMapPattern_ty5qo")
+pattern_4 = SubResource("TileMapPattern_2n50j")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ijum1"]
 scenes/1/scene = ExtResource("3_1wc0c")
