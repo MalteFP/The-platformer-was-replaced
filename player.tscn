@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b3c2ywtesbevc"]
 
-[ext_resource type="Texture2D" uid="uid://baawjmjna2j4f" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Death.png" id="2_sweqy"]
-[ext_resource type="Texture2D" uid="uid://bgo00j3t535yd" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Idle.png" id="3_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://2m4l3doub4f3" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Jump.png" id="4_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://bunvurnhk7vin" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Land.png" id="5_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://dgqrn3uhyk5va" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Run.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://baawjmjna2j4f" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Death.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bgo00j3t535yd" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Idle.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://2m4l3doub4f3" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Jump.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bunvurnhk7vin" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Land.png" id="5_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://dgqrn3uhyk5va" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Run.png" id="5_dw050"]
 [ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="6_2hs0m"]
 
 [sub_resource type="GDScript" id="GDScript_sweqy"]

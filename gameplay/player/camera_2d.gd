@@ -14,6 +14,13 @@ func _ready() -> void:
 
 	if region.size() < 3:
 		push_error("Camera viewport does not fit inside CameraBounds!")
+	
+	var target = global_position
+	region = get_valid_region(zoom)
+	if region.size() >= 3:
+		global_position = camera_bounds.to_global(
+			closest_point(camera_bounds.to_local(target), region)
+		)
 
 
 func _input(event: InputEvent) -> void:
