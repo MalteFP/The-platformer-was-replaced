@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c8u4a8ewmyj2u" path="res://textures/robot pack/Tileset&Items.png" id="1_e7lsj"]
 [ext_resource type="Texture2D" uid="uid://2rc4n8xyat33" path="res://textures/tileset.png" id="1_rx657"]
+[ext_resource type="PackedScene" uid="uid://3f1arpehtgys" path="res://gameplay/objects/Coins.tscn" id="3_1wc0c"]
+[ext_resource type="PackedScene" uid="uid://cwap44vrfagn1" path="res://gameplay/objects/exit.tscn" id="4_ijum1"]
+[ext_resource type="PackedScene" uid="uid://cvbs0sg4o3ybj" path="res://Spikes.tscn" id="5_lq85f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wc0c"]
 texture = ExtResource("1_rx657")
@@ -365,7 +368,24 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.4375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_eu68t")
 sources/1 = SubResource("TileSetAtlasSource_1wc0c")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ijum1"]
+scenes/1/scene = ExtResource("3_1wc0c")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lq85f"]
+scenes/1/scene = ExtResource("4_ijum1")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_j8f24"]
+scenes/1/scene = ExtResource("5_lq85f")
+
+[sub_resource type="TileSet" id="TileSet_q62xx"]
+sources/0 = SubResource("TileSetScenesCollectionSource_ijum1")
+sources/1 = SubResource("TileSetScenesCollectionSource_lq85f")
+sources/2 = SubResource("TileSetScenesCollectionSource_j8f24")
+
 [node name="TileMaps" type="Node2D" unique_id=1061197234]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=448091701]
 tile_set = SubResource("TileSet_l0bqs")
+
+[node name="POI" type="TileMapLayer" parent="." unique_id=825255688]
+tile_set = SubResource("TileSet_q62xx")
