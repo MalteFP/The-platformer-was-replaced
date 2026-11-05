@@ -7,4 +7,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		ScreenHolder.currentScreenNum += 1
 		ScreenHolder.currentScreenName = "levels/Level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
 		ScreenHolder.code_Saver = $"../../../Player/GameInterpreter/CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor".text
-		get_tree().change_scene_to_file(ScreenHolder.currentScreenName)
+		get_tree().call_deferred("change_scene_to_file", ScreenHolder.currentScreenName)
