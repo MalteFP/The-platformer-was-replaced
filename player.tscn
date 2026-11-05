@@ -1,58 +1,12 @@
-[gd_scene format=3 uid="uid://b3c2ywtesbevc"]
+[gd_scene format=3 uid="uid://82fxlg5urob8"]
 
-[ext_resource type="Texture2D" uid="uid://baawjmjna2j4f" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Death.png" id="2_sweqy"]
-[ext_resource type="Texture2D" uid="uid://bgo00j3t535yd" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Idle.png" id="3_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://2m4l3doub4f3" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Jump.png" id="4_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://bunvurnhk7vin" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Land.png" id="5_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://dgqrn3uhyk5va" path="res://textures/OrangeRobot/Spritesheets/OrangeRobot_Run.png" id="5_dw050"]
+[ext_resource type="Script" uid="uid://d1ggrf0c57cy" path="res://gameplay/player/player.gd" id="1_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://baawjmjna2j4f" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Death.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bgo00j3t535yd" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Idle.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://2m4l3doub4f3" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Jump.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bunvurnhk7vin" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Land.png" id="5_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://dgqrn3uhyk5va" path="res://textures/robot pack/OrangeRobot/Spritesheets/OrangeRobot_Run.png" id="5_dw050"]
 [ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="6_2hs0m"]
-
-[sub_resource type="GDScript" id="GDScript_sweqy"]
-script/source = "extends CharacterBody2D
-@onready var sprite = $AnimatedSprite2D
-
-var on_ground: bool = false
-
-const MAXRUNSPEED := 100
-const MAXJUMP := -200
-
-var moving = 0
-
-
-
-func _physics_process(delta: float) -> void:
-	frame_move()
-	gravity(delta)
-	move_and_slide()
-	if on_ground != is_on_floor():
-		sprite.play(\"land\")
-	on_ground = is_on_floor()
-func move_right():
-	moving = 1
-
-func move_left():
-	moving = -1
-
-func move_stop():
-	moving = 0
-
-func wait(args):
-	await get_tree().create_timer(args[0]).timeout
-
-func frame_move():
-	velocity.x = moving * MAXRUNSPEED
-func jump(args):
-	if is_on_floor():
-		velocity.y = args[0] * MAXJUMP
-		sprite.play(\"jump\")
-
-func gravity(delta):
-	if not is_on_floor():
-		velocity.y += 1000 * delta
-
-func death():
-	sprite.play(\"death\")
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
 size = Vector2(7.5, 16)
@@ -247,7 +201,7 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
-script = SubResource("GDScript_sweqy")
+script = ExtResource("1_1jxqw")
 
 [node name="player" type="CollisionShape2D" parent="." unique_id=35998]
 position = Vector2(0, 8)
