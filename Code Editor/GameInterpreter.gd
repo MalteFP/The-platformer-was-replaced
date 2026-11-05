@@ -107,6 +107,8 @@ func run_ast(nodes: Array[AST.ASTNode]):
 					fail("This loop ran more than %d times. Is it stuck in an infinite loop?" % MAX_LOOP_ITERATIONS, node)
 					break
 				await run_block(node.body)
+				if returning:
+					break
 				await run_ast([node.increment_expr])
 			pop_scope()
 			
@@ -145,6 +147,9 @@ func run_ast(nodes: Array[AST.ASTNode]):
 			if not halted:
 				return_value = result
 				returning = true
+			return
+		
+		if halted or returning:
 			return
 		
 func execute_function(func_name: String, args: Array, node):
@@ -272,7 +277,8 @@ func get_var(var_name: String):
 	return null
 
 func set_var(var_name: String, value) -> void:
-	for i in range(scopes.size() -1, -1, -1):
+	var lowest := 1 if call_depth > 0 else 0
+	for i in range(scopes.size() -1, lowest - 1, -1):
 		if scopes[i].has(var_name):
 			scopes[i][var_name] = value
 			return
