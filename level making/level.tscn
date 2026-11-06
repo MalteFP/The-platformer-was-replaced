@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c74bnindhjflb"]
+
+[ext_resource type="PackedScene" uid="uid://dusri61lcyuot" path="res://gameplay/player/camera_bounds.tscn" id="1_bihyd"]
+[ext_resource type="PackedScene" uid="uid://b67ugi4rxtx6n" path="res://level making/TileMap.tscn" id="2_vc3xd"]
+[ext_resource type="PackedScene" uid="uid://b6gnculduxfxr" path="res://level making/mountain.tscn" id="3_d4ugu"]
+[ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://gameplay/player/player.tscn" id="4_bihyd"]
+
+[node name="level" type="Node2D" unique_id=212496380]
+
+[node name="Camera Bounds" parent="." unique_id=543013079 instance=ExtResource("1_bihyd")]
+
+[node name="mountain" parent="." unique_id=1351815171 instance=ExtResource("3_d4ugu")]
+
+[node name="TileMaps" parent="." unique_id=1061197234 instance=ExtResource("2_vc3xd")]
+
+[node name="Sun" type="DirectionalLight2D" parent="." unique_id=1665368513]
+rotation = -0.08726646
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1499629282]
+color = Color(0.581033, 0.58103293, 0.581033, 1)
+
+[node name="Player" parent="." unique_id=1084347971 instance=ExtResource("4_bihyd")]
+
+[editable path="TileMaps"]

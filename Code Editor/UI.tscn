@@ -77,7 +77,7 @@ mouse_filter = 1
 [node name="Output" parent="CanvasLayer/VSplitContainer" unique_id=1369597118 instance=ExtResource("3_vrfts")]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 1.82
 
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/run" to="." method="_on_run_pressed"]
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/step" to="." method="_on_step_pressed"]
