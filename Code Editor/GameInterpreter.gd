@@ -381,11 +381,5 @@ func call_user_function(def: AST.FunctionDefNode, args: Array, call_node):
 	
 
 
-func _on_step_pressed() -> void:
-	step_requested = true
-
-
-
-
-func _on_pause_pressed() -> void:
-	paused = !paused
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")

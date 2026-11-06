@@ -44,23 +44,17 @@ split_offset = 363
 custom_minimum_size = Vector2(0, 20)
 custom_maximum_size = Vector2(-1, 20)
 layout_mode = 2
-split_offsets = PackedInt32Array(0, 0)
+
+[node name="menu" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=893645759]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu"
 
 [node name="run" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=1903476606]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 text = "▶️"
-
-[node name="step" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=893645759]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "⏭️"
-
-[node name="pause" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=157626674]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "⏸️"
 
 [node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1844267820 instance=ExtResource("2_qui0h")]
 layout_mode = 2
@@ -79,6 +73,5 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.82
 
+[connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/run" to="." method="_on_run_pressed"]
-[connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/step" to="." method="_on_step_pressed"]
-[connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/pause" to="." method="_on_pause_pressed"]
