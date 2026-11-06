@@ -174,7 +174,7 @@ script = ExtResource("1_ahkyy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
 sprite_frames = SubResource("SpriteFrames_q2j6n")
-animation = &"run"
+animation = &"death"
 autoplay = "idle"
 
 [node name="player" type="CollisionShape2D" parent="." unique_id=35998]

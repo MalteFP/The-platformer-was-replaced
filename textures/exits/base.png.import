@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbaus7hh5qiq0"
-path="res://.godot/imported/base02.png-50ce0c6854923437afeaf3f5524c8c02.ctex"
+uid="uid://dknme44ndtw7r"
+path="res://.godot/imported/base.png-535774ad215442c04e063a6f7ba7d9fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/summitcheckpoints/base02.png"
-dest_files=["res://.godot/imported/base02.png-50ce0c6854923437afeaf3f5524c8c02.ctex"]
+source_file="res://textures/exits/base.png"
+dest_files=["res://.godot/imported/base.png-535774ad215442c04e063a6f7ba7d9fa.ctex"]
 
 [params]
 

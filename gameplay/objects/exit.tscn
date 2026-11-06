@@ -1,24 +1,34 @@
 [gd_scene format=3 uid="uid://cwap44vrfagn1"]
 
 [ext_resource type="Script" uid="uid://d2572crxbliu7" path="res://gameplay/objects/exit.gd" id="1_ly6ds"]
-[ext_resource type="Texture2D" uid="uid://pm8x7v1d7jdl" path="res://textures/summitcheckpoints/base00.png" id="2_xm13l"]
-[ext_resource type="Texture2D" uid="uid://tndslwr2gt5b" path="res://textures/summitcheckpoints/base01.png" id="3_sdq7w"]
-[ext_resource type="Texture2D" uid="uid://cbaus7hh5qiq0" path="res://textures/summitcheckpoints/base02.png" id="4_8a74u"]
+[ext_resource type="Texture2D" uid="uid://dknme44ndtw7r" path="res://textures/exits/base.png" id="2_ly6ds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bqs"]
 size = Vector2(20, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntvr0"]
+atlas = ExtResource("2_ly6ds")
+region = Rect2(0, 0, 13, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lodsm"]
+atlas = ExtResource("2_ly6ds")
+region = Rect2(13, 0, 13, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq83i"]
+atlas = ExtResource("2_ly6ds")
+region = Rect2(26, 0, 13, 23)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvlsj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xm13l")
+"texture": SubResource("AtlasTexture_ntvr0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_sdq7w")
+"texture": SubResource("AtlasTexture_lodsm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_8a74u")
+"texture": SubResource("AtlasTexture_tq83i")
 }],
 "loop": 0,
 "name": &"Unlock",
@@ -34,10 +44,8 @@ script = ExtResource("1_ly6ds")
 shape = SubResource("RectangleShape2D_l0bqs")
 
 [node name="Base" type="AnimatedSprite2D" parent="." unique_id=450955900]
-modulate = Color(0.4745098, 1, 1, 1)
 sprite_frames = SubResource("SpriteFrames_rvlsj")
 animation = &"Unlock"
-frame = 2
 frame_progress = 1.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

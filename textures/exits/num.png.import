@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q5rbb0dwn24h"
-path="res://.godot/imported/number08.png-08c362d73c8e4ff09085341ef97d676a.ctex"
+uid="uid://b5k5s8sp4rw1g"
+path="res://.godot/imported/num.png-6da4a45ee67e7ac9501dca30ece0bf9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/summitcheckpoints/number08.png"
-dest_files=["res://.godot/imported/number08.png-08c362d73c8e4ff09085341ef97d676a.ctex"]
+source_file="res://textures/exits/num.png"
+dest_files=["res://.godot/imported/num.png-6da4a45ee67e7ac9501dca30ece0bf9e.ctex"]
 
 [params]
 

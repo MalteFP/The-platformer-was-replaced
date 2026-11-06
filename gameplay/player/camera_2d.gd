@@ -1,5 +1,7 @@
-
 extends Camera2D
+
+
+const FIT_MARGIN := 0.002
 
 var camera_bounds: Polygon2D
 
@@ -8,29 +10,14 @@ var dragging := false
 
 func _ready() -> void:
 	camera_bounds = get_tree().get_first_node_in_group("Camera Bounds") as Polygon2D
+	clamp_to_bounds(global_position)
 
-
-	var region = get_valid_region(zoom)
-
-	if region.size() < 3:
-		push_error("Camera viewport does not fit inside CameraBounds!")
-	
-	var target = global_position
-	region = get_valid_region(zoom)
-	if region.size() >= 3:
-		global_position = camera_bounds.to_global(
-			closest_point(camera_bounds.to_local(target), region)
-		)
 
 func _process(_delta: float) -> void:
-	var region = get_valid_region(zoom)
-	var target = global_position
-	if region.size() >= 3:
-		global_position = camera_bounds.to_global(
-			closest_point(camera_bounds.to_local(target), region)
-		)
-func _input(event: InputEvent) -> void:
+	clamp_to_bounds(global_position)
 
+
+func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -47,14 +34,79 @@ func _input(event: InputEvent) -> void:
 			-event.relative / zoom
 		).rotated(global_rotation)
 
-		var target = global_position + movement
-		var region = get_valid_region(zoom)
+		clamp_to_bounds(global_position + movement)
 
-		if region.size() >= 3:
-			global_position = camera_bounds.to_global(
-				closest_point(camera_bounds.to_local(target), region)
-			)
 
+
+func clamp_to_bounds(target: Vector2) -> void:
+
+	var region = get_valid_region(zoom)
+
+	if region.size() < 3:
+		enforce_valid_zoom()
+		region = get_valid_region(zoom)
+
+		if region.size() < 3:
+			return
+
+	global_position = camera_bounds.to_global(
+		closest_point(camera_bounds.to_local(target), region)
+	)
+
+
+func enforce_valid_zoom() -> void:
+
+	var low = zoom.x
+	var high = zoom.x
+	var tries := 0
+
+	# Find a zoom that fits, searching upwards from the current one.
+	while get_valid_region(Vector2.ONE * high).size() < 3:
+		low = high
+		high *= 1.5
+		tries += 1
+
+		if tries > 40:
+			push_error("Camera viewport does not fit inside CameraBounds!")
+			return
+
+	if low < high:
+		zoom = Vector2.ONE * smallest_valid_zoom(low, high)
+
+
+
+func smallest_valid_zoom(low: float, high: float) -> float:
+
+	for i in range(24):
+		var mid = (low + high) / 2.0
+
+		if get_valid_region(Vector2.ONE * mid).size() >= 3:
+			high = mid
+		else:
+			low = mid
+
+	return high * (1.0 + FIT_MARGIN)
+
+
+func change_zoom(target_zoom: float) -> void:
+
+	if target_zoom <= 0.0:
+		return
+
+	var old_zoom = zoom.x
+
+	# Zooming in only ever makes the valid region bigger.
+	if target_zoom >= old_zoom:
+		zoom = Vector2.ONE * target_zoom
+		return
+
+	if get_valid_region(Vector2.ONE * target_zoom).size() >= 3:
+		zoom = Vector2.ONE * target_zoom
+	else:
+		# Zoomed out as far as the bounds allow: stop there, with a small margin.
+		zoom = Vector2.ONE * minf(smallest_valid_zoom(target_zoom, old_zoom), old_zoom)
+
+	clamp_to_bounds(global_position)
 
 
 func get_valid_region(current_zoom: Vector2) -> PackedVector2Array:
@@ -190,49 +242,6 @@ func closest_point(point: Vector2, polygon: PackedVector2Array) -> Vector2:
 			best_point = candidate
 
 	return best_point
-
-
-func change_zoom(target_zoom: float) -> void:
-
-	var old_zoom = zoom.x
-
-	if target_zoom <= 0.0:
-		return
-
-	if target_zoom >= old_zoom:
-		zoom = Vector2.ONE * target_zoom
-		return
-
-	var requested_region = get_valid_region(Vector2.ONE * target_zoom)
-
-	if requested_region.size() >= 3:
-		zoom = Vector2.ONE * target_zoom
-	else:
-
-		# Find the minimum valid zoom.
-		var low = target_zoom
-		var high = old_zoom
-
-		for i in range(24):
-			var mid = (low + high) / 2.0
-
-			var temp_region = get_valid_region(Vector2.ONE * mid)
-
-			if temp_region.size() >= 3:
-				high = mid
-			else:
-				low = mid
-
-		zoom = Vector2.ONE * high
-
-	var region = get_valid_region(zoom)
-
-	if region.size() >= 3:
-		var local_position = camera_bounds.to_local(global_position)
-
-		global_position = camera_bounds.to_global(
-			closest_point(local_position, region)
-		)
 
 
 

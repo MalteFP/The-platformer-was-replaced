@@ -126,6 +126,7 @@ func gravity(delta):
 		velocity.y = move_toward(velocity.y, MAX_FALL, GRAVITY * delta)
 
 func death():
+	moving = 0
 	sprite.play("death")
 
 func _update_dash(delta: float) -> void:
@@ -171,7 +172,7 @@ func _try_jump() -> void:
 	
 	
 func update_animation():
-	if sprite.animation == "jump" or sprite.animation == "land":
+	if sprite.animation == "jump" or sprite.animation == "land" or sprite.animation == "death":
 		if sprite.is_playing():
 			return
 	if not is_on_floor():
