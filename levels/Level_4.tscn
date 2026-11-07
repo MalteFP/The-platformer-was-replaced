@@ -5,7 +5,7 @@
 [node name="Node2D" type="Node2D" unique_id=1599183923]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_ndolg")]
-tutorial = Array[String](["the function 'jump(<height>)' makes the robot jump.", "The height is the ratio of the maximum height you want to jump.", "Ex. 'jump(0.5)' jumps half the height of a max jump."])
+tutorial = Array[String](["the function 'jump(<height>)' makes the robot jump.", "The height is the ratio of the maximum height you want to jump.", "Ex. 'jump(0.5)' jumps half the height of a max jump.", "If no height is given ('jump()') max height jump is preformed"])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(22, 68, 653, 68, 653, 340, 22, 340)
