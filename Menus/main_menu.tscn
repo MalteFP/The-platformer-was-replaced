@@ -215,18 +215,20 @@ autoplay = "idle"
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-split_offsets = PackedInt32Array(45, 92)
+split_offsets = PackedInt32Array(45, 92, 139)
 split_offset = 45
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer" unique_id=2003052667]
 layout_mode = 2
 
 [node name="signin" type="Button" parent="VSplitContainer/HSplitContainer" unique_id=418653204]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sign-in"
 
 [node name="signup" type="Button" parent="VSplitContainer/HSplitContainer" unique_id=840225701]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sign-up"
@@ -239,9 +241,23 @@ placeholder_text = "Email"
 layout_mode = 2
 placeholder_text = "Password"
 
+[node name="Login Error" type="Label" parent="VSplitContainer" unique_id=873707232 groups=["Login Error"]]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="signout" type="Button" parent="." unique_id=901397948]
+visible = false
+custom_maximum_size = Vector2(208, -1)
+layout_mode = 0
+offset_right = 28.0
+offset_bottom = 22.0
+text = "Sign-out"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VSplitContainer/HSplitContainer/signin" to="." method="_on_signin_pressed"]
 [connection signal="pressed" from="VSplitContainer/HSplitContainer/signup" to="." method="_on_signup_pressed"]
+[connection signal="pressed" from="signout" to="." method="_on_signout_pressed"]
 
 [editable path="TileMaps"]
