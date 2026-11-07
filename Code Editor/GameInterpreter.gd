@@ -31,7 +31,7 @@ var return_value = null
 @onready var level_viewport: SubViewport = $CanvasLayer/VSplitContainer/HSplitContainer/subviewportcontation/SubViewport
 var level: Node = null
 
-func _load_level() -> void:
+func _load_level(load_code: bool = false) -> void:
 	halted = true
 	if is_instance_valid(level):
 		level_viewport.remove_child(level)
@@ -45,10 +45,11 @@ func _load_level() -> void:
 	await get_tree().process_frame
 	var level_node = level.get_child(0)
 	output.set_tutorial(level_node.tutorial)
-	Save._load_code()
+	if load_code:
+		Save._load_code()
 func _ready() -> void:
 	error_occurred.connect(_show_error)
-	_load_level()
+	_load_level(true)
 
 	
 
@@ -307,6 +308,7 @@ func _on_run_pressed() -> void:
 	
 func run_code() -> void:
 	await get_tree().process_frame
+	_load_level()
 	scopes = [{}]
 	halted = false
 	functions.clear()

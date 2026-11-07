@@ -5,6 +5,7 @@
 [node name="Level5" type="Node2D" unique_id=305218944]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_8ihq1")]
+tutorial = Array[String](["Hanging platforms can be moved through from the botton.", "Use this fact, jumping and moving to make it to the flag."])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 position = Vector2(-9, -5)

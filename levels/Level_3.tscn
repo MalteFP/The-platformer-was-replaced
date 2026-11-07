@@ -5,6 +5,7 @@
 [node name="Level3" type="Node2D" unique_id=999580504]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_kf6yc")]
+tutorial = Array[String](["'move_stop()' stops the robots current movement.", "Use it to stop the robot from walking into the spikes."])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(120, -20, 470, -20, 470, 655, 120, 655)
