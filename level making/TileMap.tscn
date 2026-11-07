@@ -732,6 +732,22 @@ texture = ExtResource("1_rx657")
 0:9/0 = 0
 0:9/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_74ars")
 0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 1, -8, 1)
+15:5/0 = 0
+15:6/0 = 0
+15:7/0 = 0
+14:5/0 = 0
+14:6/0 = 0
+14:7/0 = 0
+14:8/0 = 0
+14:9/0 = 0
+13:9/0 = 0
+13:8/0 = 0
+13:7/0 = 0
+13:6/0 = 0
+13:5/0 = 0
+12:5/0 = 0
+12:6/0 = 0
+12:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_bgr0v"]
 occlusion_layer_0/light_mask = 1

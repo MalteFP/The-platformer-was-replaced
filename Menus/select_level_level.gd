@@ -12,7 +12,7 @@ func _ready() -> void:
 	self.add_theme_stylebox_override("hover", style)
 	self.add_theme_stylebox_override("pressed", style)
 	
-	self.text = "Level: " + str(levelNum)
+	self.text = "Level: " + str(levelNum+1)
 	self.pressed.connect(func(): loadLevel(levelNum))
 
 func setup(levelNumber, picturePath):
