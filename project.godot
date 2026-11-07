@@ -44,4 +44,4 @@ theme/custom="uid://b8ikixjxb07kg"
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-viewport/transparent_background=true
+environment/defaults/default_clear_color=Color(0.09411765, 0.11372549, 0.11764706, 1)
