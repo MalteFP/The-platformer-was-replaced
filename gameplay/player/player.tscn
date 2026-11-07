@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://jdm35f7u2dow" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot10.png" id="7_chlpi"]
 [ext_resource type="Script" uid="uid://cieus0kv5wa1s" path="res://gameplay/player/camera_2d.gd" id="7_e85hc"]
 [ext_resource type="Texture2D" uid="uid://cykii1q0dwye3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot5.png" id="7_fath0"]
-[ext_resource type="PackedScene" uid="uid://bik2bgxr668ko" path="res://Code Editor/UI.tscn" id="7_fty7g"]
 [ext_resource type="Texture2D" uid="uid://c8jkn7fbudsw3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot17.png" id="8_dtclg"]
 [ext_resource type="Texture2D" uid="uid://dsv47lns74t0e" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot11.png" id="8_k8msr"]
 [ext_resource type="Texture2D" uid="uid://diricgwjdisn" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot18.png" id="9_fath0"]
@@ -186,7 +185,5 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("7_e85hc")
-
-[node name="GameInterpreter" parent="." unique_id=1870526410 instance=ExtResource("7_fty7g")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

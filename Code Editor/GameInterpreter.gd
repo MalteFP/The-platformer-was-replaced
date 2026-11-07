@@ -28,16 +28,26 @@ var return_value = null
 
 @onready var code_editor = $CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor
 @onready var output: OutputLog = $CanvasLayer/VSplitContainer/Output
+@onready var level_viewport: SubViewport = $CanvasLayer/VSplitContainer/HSplitContainer/subviewportcontation/SubViewport
+var level: Node = null
 
+func _load_level() -> void:
+	if is_instance_valid(level):
+		level_viewport.remove_child(level)
+		level.queue_free()
+	
+	var scene: PackedScene = load(ScreenHolder.currentScreenName)
+	level = scene.instantiate()
+	level_viewport.add_child(level)
+	player = get_tree().get_first_node_in_group("player")
+	
+	await get_tree().process_frame
+	var level_node = level.get_child(0)
+	output.set_tutorial(level_node.tutorial)
 func _ready() -> void:
 	error_occurred.connect(_show_error)
-	player = get_tree().get_first_node_in_group("player")
-	code_editor.text = ScreenHolder.code_Saver
-	ScreenHolder.code_Saver = ""
-	if ScreenHolder.run_on_next_enter:
-		run_code()
-		ScreenHolder.run_on_next_enter = false
-		pass
+	_load_level()
+
 	
 
 func fail(message: String, node) -> void:
@@ -289,9 +299,7 @@ func _clear_error() -> void:
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
-	ScreenHolder.code_Saver = code_editor.text
-	ScreenHolder.run_on_next_enter = true
-	get_tree().change_scene_to_file(ScreenHolder.currentScreenName)
+	run_code()
 	
 	
 func run_code() -> void:

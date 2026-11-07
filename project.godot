@@ -30,6 +30,7 @@ GameInterpreter=""
 player=""
 "Camera Bounds"=""
 output=""
+viewport=""
 
 [gui]
 
@@ -43,3 +44,4 @@ theme/custom="uid://b8ikixjxb07kg"
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+viewport/transparent_background=true

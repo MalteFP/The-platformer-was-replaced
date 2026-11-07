@@ -22,4 +22,4 @@ func setup(levelNumber, picturePath):
 func loadLevel(lvl):
 	ScreenHolder.currentScreenNum = lvl
 	ScreenHolder.currentScreenName = "res://levels/Level_" + str(lvl) + ".tscn"
-	get_tree().change_scene_to_file("levels/Level_" + str(lvl) + ".tscn")
+	get_tree().change_scene_to_file("res://Code Editor/UI.tscn")

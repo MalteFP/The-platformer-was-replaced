@@ -13,5 +13,4 @@ func _on_base_animation_finished() -> void:
 	await get_tree().create_timer(0.5).timeout
 	ScreenHolder.currentScreenNum += 1
 	ScreenHolder.currentScreenName = "levels/Level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
-	ScreenHolder.code_Saver = $"../../../Player/GameInterpreter/CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor".text
-	get_tree().call_deferred("change_scene_to_file", ScreenHolder.currentScreenName)
+	get_tree().get_first_node_in_group("GameInterpreter")._load_level()
