@@ -8,6 +8,9 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _ready() -> void:
+	if not (Auth.auth_user_id.is_empty() or Auth.access_token.is_empty()):
+		$VSplitContainer.visible = false
+		$signout.visible = true
 	
 	Auth.signed_in.connect(_on_signed_in)
 	Auth.signup_confirmation_required.connect(_on_confirmation_required)

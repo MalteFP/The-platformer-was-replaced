@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 ScreenHolder="*uid://cmvbhfqf2o0e6"
 Auth="*uid://bmn66bnrja7kt"
+Save="*uid://csr3lni23csq1"
 
 [display]
 
@@ -33,6 +34,7 @@ player=""
 output=""
 viewport=""
 "Login Error"=""
+"Code Editor"=""
 
 [gui]
 

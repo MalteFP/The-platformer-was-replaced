@@ -44,6 +44,7 @@ func _load_level() -> void:
 	await get_tree().process_frame
 	var level_node = level.get_child(0)
 	output.set_tutorial(level_node.tutorial)
+	Save._load_code()
 func _ready() -> void:
 	error_occurred.connect(_show_error)
 	_load_level()
@@ -299,6 +300,7 @@ func _clear_error() -> void:
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
+	Save._save()
 	run_code()
 	
 	

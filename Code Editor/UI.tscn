@@ -60,7 +60,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "▶"
 
-[node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1844267820 instance=ExtResource("2_qui0h")]
+[node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1844267820 groups=["Code Editor"] instance=ExtResource("2_qui0h")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
