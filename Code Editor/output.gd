@@ -38,11 +38,11 @@ func clear_log() -> void:
 
 func print_line(t: String) -> void:
 	append_text("[color=%s]OUTPUT[/color]  [color=%s]%s[/color]\n" % [C_DIM, C_OUTPUT, _esc(t)])
-
+	print(t)
 
 func error_line(line: int, message: String) -> void:
 	var where := "line %d" % line if line > 0 else ""
-	append_text("[color=%s][b]ERROR[/b][/color]  [color=%s]%s[/color]  %s\n" % [C_ERROR, C_DIM, where, _fmt(message, C_ERROR)])
+	append_text("[color=%s]ERROR[/color] %s: [color=%s]%s[/color]\n" % [C_ERROR, where, C_ERROR, _esc(message)])
 	
 func _fmt(t: String, base_color: String) -> String:
 	var parts := t.split("`")

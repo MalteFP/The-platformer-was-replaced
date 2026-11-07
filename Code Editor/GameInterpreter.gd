@@ -295,6 +295,7 @@ func _on_run_pressed() -> void:
 	
 	
 func run_code() -> void:
+	await get_tree().process_frame
 	scopes = [{}]
 	halted = false
 	functions.clear()
