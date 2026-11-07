@@ -2,6 +2,7 @@ extends HTTPRequest
 
 var pending_action
 
+
 func _ready() -> void:
 	request_completed.connect(_on_request_completed)
 

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cam = $Camera2D
 
 const MAX_RUNSPEED := 100
@@ -36,6 +36,7 @@ var coyote_timer := 0.0
 var jump_buffer_timer := 0.0
 var jump_scale := 1.0
 
+var dead: bool = false
 
 func _physics_process(delta: float) -> void:
 	_timers(delta)
@@ -127,6 +128,7 @@ func gravity(delta):
 
 func death():
 	moving = 0
+	dead = true
 	_end_dash()
 	sprite.play("death")
 
