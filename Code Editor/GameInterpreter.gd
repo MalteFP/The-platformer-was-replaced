@@ -32,6 +32,7 @@ var return_value = null
 var level: Node = null
 
 func _load_level() -> void:
+	halted = true
 	if is_instance_valid(level):
 		level_viewport.remove_child(level)
 		level.queue_free()

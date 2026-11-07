@@ -127,6 +127,7 @@ func gravity(delta):
 
 func death():
 	moving = 0
+	_end_dash()
 	sprite.play("death")
 
 func _update_dash(delta: float) -> void:

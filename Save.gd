@@ -1,11 +1,14 @@
 extends HTTPRequest
 
+var pending_action
+
 func _ready() -> void:
 	request_completed.connect(_on_request_completed)
 
 func _save():
+	pending_action = "save"
 	if Auth.auth_user_id.is_empty() or Auth.access_token.is_empty():
-		push_error("Cannot save code: player is not signed in.")
+		print("Cannot save code: player is not signed in.")
 		return
 	var row := {
 		"user_id": Auth.auth_user_id,
@@ -29,8 +32,9 @@ func _save():
 
 
 func _load_code():
+	pending_action = "load"
 	if Auth.auth_user_id.is_empty() or Auth.access_token.is_empty():
-		push_error("Cannot load code: player is not signed in.")
+		print("Cannot load code: player is not signed in.")
 		return
 	var url := "%s/rest/v1/player_level_code?select=code&user_id=eq.%s&level_id=eq.%s" % [
 	Auth.SUPABASE_URL.trim_suffix("/"),
@@ -50,6 +54,8 @@ func _load_code():
 
 
 func _on_request_completed(result: int, response_code: int, _response_headers: PackedStringArray, body: PackedByteArray) -> void:
+	if pending_action == "save":
+		return
 	if result != HTTPRequest.RESULT_SUCCESS:
 		push_error("The request failed " + str(result))
 		return
