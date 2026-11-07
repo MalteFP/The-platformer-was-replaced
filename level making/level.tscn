@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://c74bnindhjflb"]
 
 [ext_resource type="PackedScene" uid="uid://dusri61lcyuot" path="res://gameplay/player/camera_bounds.tscn" id="1_bihyd"]
+[ext_resource type="Script" uid="uid://i8lh6s8wscwp" path="res://level making/level.gd" id="1_vc3xd"]
 [ext_resource type="PackedScene" uid="uid://b67ugi4rxtx6n" path="res://level making/TileMap.tscn" id="2_vc3xd"]
 [ext_resource type="PackedScene" uid="uid://b6gnculduxfxr" path="res://level making/mountain.tscn" id="3_d4ugu"]
 [ext_resource type="PackedScene" uid="uid://cpsowvuwkeqk2" path="res://gameplay/player/player.tscn" id="4_bihyd"]
 
 [node name="level" type="Node2D" unique_id=212496380]
+script = ExtResource("1_vc3xd")
 
 [node name="Camera Bounds" parent="." unique_id=543013079 instance=ExtResource("1_bihyd")]
 

@@ -68,10 +68,11 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 mouse_filter = 1
 
-[node name="Output" parent="CanvasLayer/VSplitContainer" unique_id=1369597118 instance=ExtResource("3_vrfts")]
+[node name="Output" parent="CanvasLayer/VSplitContainer" unique_id=1369597118 groups=["output"] instance=ExtResource("3_vrfts")]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.82
+delimiter_strings = Array[String](["\" \"", "' '"])
 
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/run" to="." method="_on_run_pressed"]

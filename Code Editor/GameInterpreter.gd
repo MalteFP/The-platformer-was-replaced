@@ -26,11 +26,8 @@ var call_depth := 0
 var returning := false
 var return_value = null
 
-var paused = false
-var step_requested = false
-
 @onready var code_editor = $CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor
-@onready var output = $CanvasLayer/VSplitContainer/Output
+@onready var output: OutputLog = $CanvasLayer/VSplitContainer/Output
 
 func _ready() -> void:
 	error_occurred.connect(_show_error)
@@ -77,15 +74,10 @@ func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
 		if node.line -1 >= 0:
 			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
-		while paused and !step_requested:
-			await get_tree().process_frame
 		
-		if step_requested:
-			step_requested = false
 		
 		await get_tree().create_timer(0.01).timeout
-		if node.line - 1 != -1:
-			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
+		
 
 		if halted:
 			return
@@ -148,7 +140,8 @@ func run_ast(nodes: Array[AST.ASTNode]):
 				return_value = result
 				returning = true
 			return
-		
+		if node.line - 1 != -1:
+			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.0))
 		if halted or returning:
 			return
 		
@@ -176,7 +169,7 @@ func execute_function(func_name: String, args: Array, node):
 			await player.dash(args)
 		"print":
 			var text = str(args[0]) if args.size() > 0 else ""
-			output.text += "OUTPUT: " + text + "\n"
+			output.print_line(text)
 		_:
 			fail("Unknown function '%s'" % func_name, node)
 	return null
@@ -285,14 +278,13 @@ func set_var(var_name: String, value) -> void:
 	scopes[-1][var_name] = value
 	
 func _show_error(line: int, message: String) -> void:
-	output.text += "Error on line %d: %s" % [line, message] + "\n"
+	output.error_line(line, message)
 	if line > 0 and line <= code_editor.get_line_count():
 		code_editor.set_line_background_color(line - 1, Color(0.643, 0.0, 0.0, 0.631))
 		code_editor.set_caret_line(line - 1)
 
 func _clear_error() -> void:
-	output.text = ""
-	
+	output.clear_log()
 	for l in code_editor.get_line_count():
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 

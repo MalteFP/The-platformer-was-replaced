@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://emnrgv8rdevc" path="res://Code Editor/output.gd" id="1_rhkpb"]
 
-[node name="Output" type="CodeEdit" unique_id=1532310492]
+[node name="Output" type="RichTextLabel" unique_id=1744327232]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_rhkpb")

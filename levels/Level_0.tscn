@@ -5,6 +5,7 @@
 [node name="level_0" type="Node2D" unique_id=168435466]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_eus5j")]
+tutorial = Array[String](["Write code to control the robot", "Type the function 'move_right()'", "Then click run"])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(90, -90, 990, -90, 990, 650, 90, 650)

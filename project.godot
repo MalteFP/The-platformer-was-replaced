@@ -29,6 +29,11 @@ window/stretch/aspect="expand"
 GameInterpreter=""
 player=""
 "Camera Bounds"=""
+output=""
+
+[gui]
+
+theme/custom="uid://b8ikixjxb07kg"
 
 [physics]
 
