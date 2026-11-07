@@ -1,5 +1,4 @@
 extends Control
-var paused = false
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menus/select_level.tscn")
@@ -7,3 +6,26 @@ func _on_play_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+func _ready() -> void:
+	
+	Auth.signed_in.connect(_on_signed_in)
+	Auth.signup_confirmation_required.connect(_on_confirmation_required)
+	Auth.auth_error.connect(_on_auth_error)
+
+func _on_signed_in(user: Dictionary) -> void:
+	print("Signed in. User ID: ", user.get("id", ""))
+
+func _on_confirmation_required(email: String) -> void:
+	print("Check your email to confirm: ", email)
+
+func _on_auth_error(message: String) -> void:
+	push_error(message)
+
+
+func _on_signin_pressed() -> void:
+	Auth.sign_in($VSplitContainer/Email.text, $VSplitContainer/Password.text)
+
+
+func _on_signup_pressed() -> void:
+	Auth.sign_up($VSplitContainer/Email.text, $VSplitContainer/Password.text)

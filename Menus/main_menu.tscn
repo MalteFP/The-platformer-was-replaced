@@ -211,7 +211,37 @@ sprite_frames = SubResource("SpriteFrames_4i0ov")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1780413337]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+split_offsets = PackedInt32Array(45, 92)
+split_offset = 45
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer" unique_id=2003052667]
+layout_mode = 2
+
+[node name="signin" type="Button" parent="VSplitContainer/HSplitContainer" unique_id=418653204]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sign-in"
+
+[node name="signup" type="Button" parent="VSplitContainer/HSplitContainer" unique_id=840225701]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sign-up"
+
+[node name="Email" type="LineEdit" parent="VSplitContainer" unique_id=1962366590]
+layout_mode = 2
+placeholder_text = "Email"
+
+[node name="Password" type="LineEdit" parent="VSplitContainer" unique_id=407958306]
+layout_mode = 2
+placeholder_text = "Password"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VSplitContainer/HSplitContainer/signin" to="." method="_on_signin_pressed"]
+[connection signal="pressed" from="VSplitContainer/HSplitContainer/signup" to="." method="_on_signup_pressed"]
 
 [editable path="TileMaps"]
