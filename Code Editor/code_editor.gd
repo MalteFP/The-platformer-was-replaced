@@ -7,6 +7,8 @@ var keywords: Array[Dictionary] = [
 	{"keyword": "func","color": Color.RED}
 	]
 
+
+
 func _ready() -> void:
 	draw_control_chars = false
 	syntax_highlighter = create_custom_highligther()

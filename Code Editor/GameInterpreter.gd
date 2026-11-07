@@ -29,6 +29,7 @@ var return_value = null
 @onready var code_editor = $CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/CodeEditor
 @onready var output: OutputLog = $CanvasLayer/VSplitContainer/Output
 @onready var level_viewport: SubViewport = $CanvasLayer/VSplitContainer/HSplitContainer/subviewportcontation/SubViewport
+var _completion := CodeCompletion.new()
 var level: Node = null
 
 func _load_level(load_code: bool = false) -> void:
@@ -49,8 +50,8 @@ func _load_level(load_code: bool = false) -> void:
 		Save._load_code()
 func _ready() -> void:
 	error_occurred.connect(_show_error)
+	_completion.attach(code_editor)
 	_load_level(true)
-
 	
 
 func fail(message: String, node) -> void:

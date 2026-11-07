@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvbs0sg4o3ybj"]
 
-[ext_resource type="Script" uid="uid://rk4t744tg2g4" path="res://spikes.gd" id="1_gwck6"]
+[ext_resource type="Script" uid="uid://rk4t744tg2g4" path="res://gameplay/objects/spikes.gd" id="1_gwck6"]
 [ext_resource type="Texture2D" uid="uid://2rc4n8xyat33" path="res://textures/tileset.png" id="2_gwck6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8uvme"]

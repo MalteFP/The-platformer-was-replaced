@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://2rc4n8xyat33" path="res://textures/tileset.png" id="1_rx657"]
 [ext_resource type="PackedScene" uid="uid://3f1arpehtgys" path="res://gameplay/objects/Coins.tscn" id="3_1wc0c"]
 [ext_resource type="PackedScene" uid="uid://cwap44vrfagn1" path="res://gameplay/objects/exit.tscn" id="4_ijum1"]
-[ext_resource type="PackedScene" uid="uid://cvbs0sg4o3ybj" path="res://Spikes.tscn" id="5_lq85f"]
+[ext_resource type="PackedScene" uid="uid://cvbs0sg4o3ybj" path="res://gameplay/objects/Spikes.tscn" id="5_lq85f"]
 [ext_resource type="PackedScene" uid="uid://ttlar2lhabio" path="res://level making/light.tscn" id="7_088bw"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_j8f24"]

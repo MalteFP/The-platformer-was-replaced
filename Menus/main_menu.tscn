@@ -216,10 +216,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 split_offsets = PackedInt32Array(45, 92, 139)
+dragging_enabled = false
+dragger_visibility = 1
 split_offset = 45
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer" unique_id=2003052667]
 layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 1
 
 [node name="signin" type="Button" parent="VSplitContainer/HSplitContainer" unique_id=418653204]
 custom_minimum_size = Vector2(100, 0)
