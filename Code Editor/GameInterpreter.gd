@@ -43,7 +43,6 @@ func _load_level(load_code: bool = false) -> void:
 	level_viewport.add_child(level)
 	player = get_tree().get_first_node_in_group("player")
 	
-	await get_tree().process_frame
 	var level_node = level.get_child(0)
 	output.set_tutorial(level_node.tutorial)
 	if load_code:
