@@ -14,13 +14,13 @@ const KEYWORDS := {
 
 
 const BUILTINS := {
-	"print": ["print(value)", "print(|)"],
+	"print": ["print(value)", "print()"],
 	"move_left": ["move_left()", "move_left()"],
 	"move_right": ["move_right()", "move_right()"],
 	"move_stop": ["move_stop()", "move_stop()"],
-	"wait": ["wait(seconds)", "wait(|)"],
-	"jump": ["jump(height)", "jump(|)"],
-	"dash": ["dash(distance)", "dash(|)"],
+	"wait": ["wait(seconds)", "wait()"],
+	"jump": ["jump(height)", "jump()"],
+	"dash": ["dash(distance)", "dash()"],
 }
 
 const CARET := "\uFFFF"
