@@ -302,13 +302,14 @@ func _clear_error() -> void:
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
+	halted = true
 	Save._save()
 	run_code()
 	
 	
 func run_code() -> void:
-	await get_tree().process_frame
 	_load_level()
+	await get_tree().process_frame
 	scopes = [{}]
 	halted = false
 	functions.clear()
