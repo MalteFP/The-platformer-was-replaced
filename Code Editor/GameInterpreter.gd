@@ -34,7 +34,7 @@ var level: Node = null
 
 var _running: bool = false
 var _restarting: bool = false
-
+var _error_line := -1
 
 func _load_level(load_code: bool = false) -> void:
 	halted = true
@@ -92,8 +92,7 @@ func run_ast(nodes: Array[AST.ASTNode]):
 		if halted:
 			return
 			
-		if node.line -1 >= 0:
-			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
+		_unhighlight(node.line)
 		
 		
 		await get_tree().create_timer(0.01).timeout
@@ -295,15 +294,21 @@ func set_var(var_name: String, value) -> void:
 	scopes[-1][var_name] = value
 	
 func _show_error(line: int, message: String) -> void:
+	_error_line = line
 	output.error_line(line, message)
 	if line > 0 and line <= code_editor.get_line_count():
 		code_editor.set_line_background_color(line - 1, Color(0.643, 0.0, 0.0, 0.631))
 		code_editor.set_caret_line(line - 1)
 
 func _clear_error() -> void:
+	_error_line = -1
 	output.clear_log()
 	for l in code_editor.get_line_count():
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
+
+func _unhighlight(line: int) -> void:
+	if line > 0 and line != _error_line:
+		code_editor.set_line_background_color(line - 1, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
 	Save._save()
