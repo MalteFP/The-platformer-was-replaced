@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cam = $Camera2D
+@onready var crush_area: Area2D = $"Crush area"
 
 const MAX_RUNSPEED := 100
 const MAX_JUMP := -300
@@ -56,7 +57,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
+	_check_crushed()
 
+func _check_crushed() -> void:
+	var colliders = crush_area.get_overlapping_bodies()
+	for collider in colliders:
+		if collider.name == "Player":
+			continue
+		death()
+		return
 
 func _timers(delta: float) -> void:
 	dash_grace_timer = max(dash_grace_timer - delta, 0.0)
@@ -131,6 +140,9 @@ func death():
 	dead = true
 	_end_dash()
 	sprite.play("death")
+	var tree = get_tree()
+	await sprite.animation_finished
+	tree.get_first_node_in_group("GameInterpreter")._load_level()
 
 func _update_dash(delta: float) -> void:
 	if dash_timer <= 0.0:

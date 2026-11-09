@@ -168,6 +168,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
 size = Vector2(7.5, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgr0v"]
+size = Vector2(4, 14)
+
 [node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
 script = ExtResource("1_ahkyy")
 
@@ -185,5 +188,11 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("7_e85hc")
+
+[node name="Crush area" type="Area2D" parent="." unique_id=130012974]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crush area" unique_id=632664386]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_bgr0v")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
