@@ -55,11 +55,12 @@ func _physics_process(delta):
 		return
 	var motion = direction.normalized() * speed * delta
 	if _would_hit_wall(motion):
-		moving = false
 		arrow.play("dead")
 		patch.region_rect = dead_region
 	else:
 		global_position += motion
+		arrow.play("moving")
+		patch.region_rect = moving_region
 	
 func _would_hit_wall(motion: Vector2) -> bool:
 	test_params.from = global_transform

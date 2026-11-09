@@ -50,6 +50,7 @@ func _load_level(load_code: bool = false) -> void:
 	
 	var level_node = level.get_child(0)
 	output.set_tutorial(level_node.tutorial)
+	player.interpreter = self
 	if load_code:
 		Save._load_code()
 func _ready() -> void:
@@ -322,7 +323,6 @@ func _on_run_pressed() -> void:
 		output.error_line(0, "The previous run didn't stop in time, Try again")
 		return
 	_load_level()
-	_restarting = false
 	await run_code()
 
 func run_code() -> void:
@@ -339,6 +339,7 @@ func _run_code() -> void:
 	call_depth = 0
 	returning = false
 	return_value = null
+	_restarting = false
 	_clear_error()
 	
 	var tokens = Lexer.tokenize(code_editor.text)
@@ -412,4 +413,5 @@ func call_user_function(def: AST.FunctionDefNode, args: Array, call_node):
 
 
 func _on_menu_pressed() -> void:
+	halted = true
 	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
