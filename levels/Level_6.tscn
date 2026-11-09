@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bipw265ow1jky"]
+
+[ext_resource type="PackedScene" uid="uid://c74bnindhjflb" path="res://level making/level.tscn" id="1_i6ngu"]
+
+[node name="Node2D" type="Node2D" unique_id=1752829112]
+
+[node name="level" parent="." unique_id=212496380 instance=ExtResource("1_i6ngu")]
+
+[node name="Player" parent="level" index="5" unique_id=1084347971]
+position = Vector2(191, 196)
+
+[editable path="level"]
+[editable path="level/TileMaps"]
