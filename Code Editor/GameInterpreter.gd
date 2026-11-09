@@ -32,6 +32,10 @@ var return_value = null
 var _completion := CodeCompletion.new()
 var level: Node = null
 
+var _running: bool = false
+var _restarting: bool = false
+
+
 func _load_level(load_code: bool = false) -> void:
 	halted = true
 	if is_instance_valid(level):
@@ -85,6 +89,9 @@ func run_block(nodes: Array[AST.ASTNode]):
 
 func run_ast(nodes: Array[AST.ASTNode]):
 	for node in nodes:
+		if halted:
+			return
+			
 		if node.line -1 >= 0:
 			code_editor.set_line_background_color(node.line - 1, Color(0.471, 0.471, 0.471, 0.631))
 		
@@ -92,9 +99,6 @@ func run_ast(nodes: Array[AST.ASTNode]):
 		await get_tree().create_timer(0.01).timeout
 		
 
-		if halted:
-			return
-			
 			
 		if node is AST.AssignmentNode:
 			var value = await evaluate_expression(node.value)
@@ -302,13 +306,30 @@ func _clear_error() -> void:
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
-	halted = true
 	Save._save()
-	run_code()
-	
-	
-func run_code() -> void:
+	if _restarting:
+		return
+	_restarting = true
+	halted = true
+	var waited := 0.0
+	while _running and waited < 3.0:
+		await get_tree().process_frame
+		waited += get_process_delta_time()
+	if _running:
+		_restarting = false
+		output.error_line(0, "The previous run didn't stop in time, Try again")
+		return
 	_load_level()
+	_restarting = false
+	await run_code()
+
+func run_code() -> void:
+	_running = true
+	await _run_code()
+	_running = false
+
+
+func _run_code() -> void:
 	await get_tree().process_frame
 	scopes = [{}]
 	halted = false
