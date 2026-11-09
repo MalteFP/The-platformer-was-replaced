@@ -25,7 +25,8 @@ position = Vector2(226, 417)
 
 [node name="Moving Block" parent="level" unique_id=204005443 instance=ExtResource("2_wd123")]
 position = Vector2(298, 381)
-size_in_tiles = Vector2i(2, 2)
+size_in_tiles = Vector2i(4, 2)
+direction = Vector2(0, 1)
 
 [editable path="level"]
 [editable path="level/TileMaps"]

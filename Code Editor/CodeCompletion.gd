@@ -20,7 +20,7 @@ const BUILTINS := {
 	"move_stop": ["move_stop()", "move_stop()"],
 	"wait": ["wait(seconds)", "wait()"],
 	"jump": ["jump(height)", "jump()"],
-	"dash": ["dash(distance)", "dash()"],
+	"dash": ["dash(angle)", "dash()"],
 }
 
 const CARET := "\uFFFF"

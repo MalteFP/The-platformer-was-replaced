@@ -3,24 +3,34 @@ extends AnimatableBody2D
 const TILE := 16
 
 
+const idle_region = Rect2(4, 4, 24, 24)
+const moving_region = Rect2(36, 4, 24, 24)
+const dead_region = Rect2(68, 4, 24, 24)
+
 @export var size_in_tiles := Vector2i(2, 2):
 	set(value):
 		size_in_tiles = value.max(Vector2i.ONE)
 		_update_size()
 
-@export var direction := Vector2.RIGHT:
-	set(value):
-		rotation = value.angle()
-@export var speed := 25.0
+@export var direction := Vector2.RIGHT
+@export var speed := 75
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var patch: NinePatchRect = $NinePatchRect
+@onready var detect_shape: CollisionShape2D = $"Detect player area/PlayerDetection"
+@onready var arrow: AnimatedSprite2D = $Arrow
+
 
 var moving := false
 
+var last_pos: Vector2
+
 func _ready():
-	sync_to_physics = false
 	_update_size()
+	_update_direction()
+
+func _update_direction():
+	arrow.rotation = direction.angle()
 
 func _update_size():
 	if not is_node_ready():
@@ -31,8 +41,25 @@ func _update_size():
 	shape.shape = RectangleShape2D.new()
 	shape.shape.size = px
 	shape.position = px / 2.0
-
+	
+	detect_shape.shape.size = Vector2(TILE * size_in_tiles.x, 0)
+	detect_shape.position.x = (TILE * size_in_tiles.x) / 2
+	detect_shape.position.y = -2
+	arrow.position = (size_in_tiles * TILE) / 2
+	
 func _physics_process(delta):
 	if not moving:
 		return
 	move_and_collide(direction.normalized() * speed * delta)
+	if last_pos and last_pos == global_position:
+		moving = false
+		arrow.play("dead")
+		patch.region_rect = dead_region
+	last_pos = global_position
+	
+
+func _on_detect_player_area_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		moving = true
+		arrow.play("moving")
+		patch.region_rect = moving_region

@@ -21,6 +21,10 @@ ScreenHolder="*uid://cmvbhfqf2o0e6"
 Auth="*uid://bmn66bnrja7kt"
 Save="*uid://csr3lni23csq1"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [display]
 
 window/stretch/mode="canvas_items"
