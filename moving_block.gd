@@ -25,6 +25,9 @@ var moving := false
 
 var last_pos: Vector2
 
+var test_params := PhysicsTestMotionParameters2D.new()
+var test_result := PhysicsTestMotionResult2D.new()
+
 func _ready():
 	_update_size()
 	_update_direction()
@@ -39,7 +42,7 @@ func _update_size():
 	patch.position = Vector2.ZERO
 	patch.size = px
 	shape.shape = RectangleShape2D.new()
-	shape.shape.size = px
+	shape.shape.size = px - Vector2(2, 2)
 	shape.position = px / 2.0
 	
 	detect_shape.shape.size = Vector2(TILE * size_in_tiles.x, 0)
@@ -50,13 +53,23 @@ func _update_size():
 func _physics_process(delta):
 	if not moving:
 		return
-	move_and_collide(direction.normalized() * speed * delta)
-	if last_pos and last_pos == global_position:
+	var motion = direction.normalized() * speed * delta
+	if _would_hit_wall(motion):
 		moving = false
 		arrow.play("dead")
 		patch.region_rect = dead_region
-	last_pos = global_position
+	else:
+		global_position += motion
 	
+func _would_hit_wall(motion: Vector2) -> bool:
+	test_params.from = global_transform
+	test_params.motion = motion
+	test_params.margin = 0.01
+	var excluded: Array[int] = []
+	for p in get_tree().get_nodes_in_group("player"):
+		excluded.append(p.get_instance_id())
+	test_params.exclude_objects = excluded
+	return PhysicsServer2D.body_test_motion(get_rid(), test_params, test_result)
 
 func _on_detect_player_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":

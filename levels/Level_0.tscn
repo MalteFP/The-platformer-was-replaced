@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cb0i7pietmhnf"]
 
 [ext_resource type="PackedScene" uid="uid://c74bnindhjflb" path="res://level making/level.tscn" id="1_eus5j"]
-[ext_resource type="PackedScene" uid="uid://htv7c6asokvp" path="res://gameplay/objects/moving_block.tscn" id="2_wd123"]
 
 [node name="level_0" type="Node2D" unique_id=168435466]
 
@@ -22,11 +21,6 @@ tile_map_data = PackedByteArray("AAAKABkAAQAPAAAAABAJABkAAQAQAAAAABAKABoAAQAPAAE
 
 [node name="Player" parent="level" index="5" unique_id=1084347971]
 position = Vector2(226, 417)
-
-[node name="Moving Block" parent="level" unique_id=204005443 instance=ExtResource("2_wd123")]
-position = Vector2(298, 381)
-size_in_tiles = Vector2i(4, 2)
-direction = Vector2(0, 1)
 
 [editable path="level"]
 [editable path="level/TileMaps"]

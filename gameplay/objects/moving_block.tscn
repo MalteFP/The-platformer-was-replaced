@@ -49,7 +49,6 @@ animations = [{
 }]
 
 [node name="Moving Block" type="AnimatableBody2D" unique_id=204005443]
-sync_to_physics = false
 script = ExtResource("1_lb8nx")
 size_in_tiles = Vector2i(1, 1)
 
