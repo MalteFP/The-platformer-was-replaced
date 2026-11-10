@@ -20,7 +20,7 @@ tile_map_data = PackedByteArray("AAALABIAAgAAAAAAAQAMABIAAgAAAAAAAQAPABIAAgAAAAA
 tile_map_data = PackedByteArray("AAAoAAsAAQAPAAAAAAAoAAwAAQAPAAEAAAApAAsAAQAQAAAAAAApAAwAAQAQAAEAAAAnAAoAAQAOAAUAAAAnAAsAAQAOAAYAAAAnAAwAAQAOAAcAAAA=")
 
 [node name="Player" parent="level" index="5" unique_id=1084347971]
-position = Vector2(105, 291)
+position = Vector2(104, 288)
 
 [editable path="level"]
 [editable path="level/TileMaps"]
