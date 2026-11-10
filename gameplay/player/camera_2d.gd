@@ -9,6 +9,7 @@ var dragging := false
 
 
 func _ready() -> void:
+	global_position = get_parent().global_position
 	camera_bounds = get_tree().get_first_node_in_group("Camera Bounds") as Polygon2D
 	clamp_to_bounds(global_position)
 
@@ -60,7 +61,6 @@ func enforce_valid_zoom() -> void:
 	var high = zoom.x
 	var tries := 0
 
-	# Find a zoom that fits, searching upwards from the current one.
 	while get_valid_region(Vector2.ONE * high).size() < 3:
 		low = high
 		high *= 1.5

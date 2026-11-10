@@ -152,7 +152,7 @@ func death():
 	sprite.play("death")
 	var tree = get_tree()
 	await sprite.animation_finished
-	tree.get_first_node_in_group("GameInterpreter")._load_level()
+	tree.get_first_node_in_group("GameInterpreter")._load_level(false, true)
 
 func _update_dash(delta: float) -> void:
 	if dash_timer <= 0.0:

@@ -6,7 +6,7 @@
 [node name="Level3" type="Node2D" unique_id=1986102108]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_kf6yc")]
-tutorial = Array[String](["The function 'move_stop()' makes the robot stop moving.", "Stand on the arrow block to make it move."])
+tutorial = Array[String](["The function ", "```", "move_stop()", "```", "makes the robot stop moving.", "Stand on the arrow blocks to make them move the direction of the arrow."])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(75, 250, 610, 250, 610, 625, 75, 625)

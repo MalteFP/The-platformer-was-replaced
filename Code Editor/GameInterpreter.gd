@@ -37,8 +37,13 @@ var _running: bool = false
 var _restarting: bool = false
 
 
-func _load_level(load_code: bool = false) -> void:
+func _load_level(load_code: bool = false, keep_camera: bool = false) -> void:
 	halted = true
+	var cam_transformation: Transform2D
+	var cam_zoom: Vector2
+	if keep_camera:
+		cam_transformation = player.cam.global_transform
+		cam_zoom = player.cam.zoom
 	if is_instance_valid(level):
 		level_viewport.remove_child(level)
 		level.queue_free()
@@ -51,6 +56,9 @@ func _load_level(load_code: bool = false) -> void:
 	var level_node = level.get_child(0)
 	output.set_tutorial(level_node.tutorial)
 	player.interpreter = self
+	if keep_camera:
+		player.cam.global_transform = cam_transformation
+		player.cam.zoom = cam_zoom
 	if load_code:
 		Save._load_code()
 func _ready() -> void:
@@ -322,7 +330,7 @@ func _on_run_pressed() -> void:
 		_restarting = false
 		output.error_line(0, "The previous run didn't stop in time, Try again")
 		return
-	_load_level()
+	_load_level(false, true)
 	await run_code()
 
 func run_code() -> void:
