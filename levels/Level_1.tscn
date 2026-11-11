@@ -5,7 +5,7 @@
 [node name="level_1" type="Node2D" unique_id=2110047852]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_cegsv")]
-tutorial = Array[String](["The function 'wait(<time>)' pauses the execusing of the code for time secounds.", "Use 'move_right()', 'move_left()', 'wait(<time>)' to reach the flag"])
+tutorial = Array[String](["The function,", "```", "wait(secounds)", "```", "Stops the executing of the code for the given number of secounds.", "Ex.", "```", "wait(0.5)", "```", "waits half a secound then continues."])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(32, 150, 1000, 150, 1000, 650, 32, 650)

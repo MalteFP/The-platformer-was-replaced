@@ -1,12 +1,11 @@
 [gd_scene format=4 uid="uid://cb0i7pietmhnf"]
 
 [ext_resource type="PackedScene" uid="uid://c74bnindhjflb" path="res://level making/level.tscn" id="1_eus5j"]
-[ext_resource type="PackedScene" uid="uid://htv7c6asokvp" path="res://gameplay/objects/moving_block.tscn" id="2_wd123"]
 
 [node name="level_0" type="Node2D" unique_id=168435466]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_eus5j")]
-tutorial = Array[String](["Write code to control the robot.", "Type the function 'move_right()'.", "Then click run."])
+tutorial = Array[String](["Write code to control the robot.", "Type the function.", "```", "move_right()", "```", "Then click run ▶.", "The FOV can be moved by dragging the gameplay"])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(90, -90, 990, -90, 990, 650, 90, 650)
@@ -21,11 +20,7 @@ tile_map_data = PackedByteArray("AAA4AB4AAwAAAAAAAQA4ACMAAQAAAAAAAQA=")
 tile_map_data = PackedByteArray("AAAKABkAAQAPAAAAABAJABkAAQAQAAAAABAKABoAAQAPAAEAABAJABoAAQAQAAEAABAIAAUAAQAPAAAAABAHAAUAAQAQAAAAABAIAAYAAQAPAAEAABAHAAYAAQAQAAEAABAKAA8AAQAOAAEAAAA6ABMAAQAPAAAAAAA6ABQAAQAPAAEAAAA7ABMAAQAQAAAAAAA7ABQAAQAQAAEAAAA0ABkAAQAPAAAAABAzABkAAQAQAAAAABA0ABoAAQAPAAEAABAzABoAAQAQAAEAABA6ABoAAQAOAAEAAAAXAB0AAQAOAAEAABAjACEAAQAPAAAAAAAjACIAAQAPAAEAAAAkACEAAQAQAAAAAAAkACIAAQAQAAEAAAA=")
 
 [node name="Player" parent="level" index="5" unique_id=1084347971]
-position = Vector2(226, 417)
-
-[node name="Moving Block" parent="level" unique_id=204005443 instance=ExtResource("2_wd123")]
-position = Vector2(298, 381)
-size_in_tiles = Vector2i(2, 2)
+position = Vector2(226, 415)
 
 [editable path="level"]
 [editable path="level/TileMaps"]

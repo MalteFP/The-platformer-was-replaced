@@ -1,6 +1,9 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cam = $Camera2D
+@onready var crush_area: Area2D = $"Crush area"
+
+var interpreter: GameInterpreter
 
 const MAX_RUNSPEED := 100
 const MAX_JUMP := -300
@@ -39,6 +42,8 @@ var jump_scale := 1.0
 var dead: bool = false
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	_timers(delta)
 	
 	_update_dash(delta)
@@ -56,7 +61,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
+	_check_crushed()
 
+func _check_crushed() -> void:
+	var colliders = crush_area.get_overlapping_bodies()
+	for collider in colliders:
+		if collider.name == "Player" or dead:
+			continue
+		death()
+		return
 
 func _timers(delta: float) -> void:
 	dash_grace_timer = max(dash_grace_timer - delta, 0.0)
@@ -81,7 +94,10 @@ func move_stop():
 	moving = 0
 
 func wait(args):
-	await get_tree().create_timer(args[0]).timeout
+	var t:= 0.0
+	while t < args[0] and not interpreter.halted and not dead:
+		await get_tree().physics_frame
+		t += get_physics_process_delta_time()
 
 func _frame_move(delta):
 	if dash_timer > 0.0:
@@ -127,10 +143,16 @@ func gravity(delta):
 		velocity.y = move_toward(velocity.y, MAX_FALL, GRAVITY * delta)
 
 func death():
-	moving = 0
+	if dead:
+		return
+	interpreter.halted = true
 	dead = true
+	moving = 0
 	_end_dash()
 	sprite.play("death")
+	var tree = get_tree()
+	await sprite.animation_finished
+	tree.get_first_node_in_group("GameInterpreter")._load_level(false, true)
 
 func _update_dash(delta: float) -> void:
 	if dash_timer <= 0.0:

@@ -165,10 +165,15 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_84s55"]
-size = Vector2(7.5, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0tpqw"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgr0v"]
+size = Vector2(2, 14)
 
 [node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
+floor_max_angle = 1.2217305
 script = ExtResource("1_ahkyy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
@@ -178,12 +183,19 @@ autoplay = "idle"
 
 [node name="player" type="CollisionShape2D" parent="." unique_id=35998]
 position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_84s55")
+shape = SubResource("CapsuleShape2D_0tpqw")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2086737712]
+top_level = true
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("7_e85hc")
+
+[node name="Crush area" type="Area2D" parent="." unique_id=130012974]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crush area" unique_id=632664386]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_bgr0v")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
