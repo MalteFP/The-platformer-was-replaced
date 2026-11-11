@@ -22,5 +22,12 @@ tile_map_data = PackedByteArray("AAAeAA0AAQAAAAkAAAAfAA0AAQABAAkAAAAgAA0AAQACAAk
 [node name="Player" parent="level" index="5" unique_id=1084347971]
 position = Vector2(135, 272)
 
+[node name="Control" parent="level" index="6" unique_id=1175825285]
+visible = true
+
+[node name="CanvasLayer" parent="level/Control" index="0" unique_id=507001693]
+visible = false
+
 [editable path="level"]
 [editable path="level/TileMaps"]
+[editable path="level/Control"]

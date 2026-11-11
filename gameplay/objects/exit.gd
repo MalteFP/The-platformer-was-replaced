@@ -10,7 +10,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_base_animation_finished() -> void:
-	await get_tree().create_timer(0.5).timeout
-	ScreenHolder.currentScreenNum += 1
-	ScreenHolder.currentScreenName = "levels/Level_" + str(ScreenHolder.currentScreenNum) + ".tscn"
-	get_tree().get_first_node_in_group("GameInterpreter")._load_level(true)
+	get_tree().get_first_node_in_group("LevelComplete").get_child(0).get_child(-1).get_child(1).text = "Level " + str(ScreenHolder.currentScreenNum + 1) + " Complete!"
+	get_tree().get_first_node_in_group("LevelComplete").get_child(0).show()
+	
+	

@@ -11,3 +11,4 @@ position = Vector2(191, 196)
 
 [editable path="level"]
 [editable path="level/TileMaps"]
+[editable path="level/Control"]
