@@ -21,4 +21,4 @@ func _on_main_menu_pressed() -> void:
 
 func _on_retry_pressed() -> void:
 	$CanvasLayer.hide()
-	get_tree().get_first_node_in_group("GameInterpreter")._load_level(true) 
+	get_tree().get_first_node_in_group("GameInterpreter")._load_level() 
