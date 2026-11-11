@@ -5,6 +5,7 @@
 [node name="Node2D" type="Node2D" unique_id=1974824887]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_rj2qe")]
+tutorial = Array[String](["To clear larger gaps you will have to use the dash function:", "```", "dash(angle)", "```", "Use the dash in combination with a well timed jump to clear the gap."])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(6, 1, 931, 4, 925, 547, 8, 552)
