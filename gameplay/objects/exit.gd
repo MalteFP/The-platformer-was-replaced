@@ -10,7 +10,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_base_animation_finished() -> void:
-	get_tree().get_first_node_in_group("LevelComplete").get_child(0).get_child(-1).get_child(1).text = "Level " + str(ScreenHolder.currentScreenNum + 1) + " Complete!"
-	get_tree().get_first_node_in_group("LevelComplete").get_child(0).show()
+	get_tree().get_first_node_in_group("LevelComplete").get_node("CanvasLayer/CenterContainer/PanelContainer/VBoxContainer2/VBoxContainer/LevelComplete").text = "Level " + str(ScreenHolder.currentScreenNum + 1) + " Complete!"
+	get_tree().get_first_node_in_group("LevelComplete").get_node("CanvasLayer").show()
 	
 	
