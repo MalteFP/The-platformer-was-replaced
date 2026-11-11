@@ -13,7 +13,11 @@ const KEYWORDS := {
 	"while": Color.ORANGE,
 	"for": Color.ORANGE,
 	"if": Color.ORANGE,
+	"else": Color.ORANGE,
 	"func": Color.RED,
+	"false": Color.DARK_RED,
+	"true": Color.DARK_RED,
+	"return": Color.ORANGE
 }
 
 static func hex(c: Color) -> String:
