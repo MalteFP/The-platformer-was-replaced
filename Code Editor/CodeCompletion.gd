@@ -30,6 +30,18 @@ var _func_regex := RegEx.create_from_string("func\\s+([A-Za-z_]\\w*)\\s*\\(([^)]
 var _var_regex := RegEx.create_from_string("(?m)^\\s*(?:for\\s+)?([A-Za-z_]\\w*)\\s*=(?!=)")
 
 
+func _fix_caret_marker() -> bool:
+	var line := editor.get_caret_line()
+	var text := editor.get_line(line)
+	var idx := text.find(CARET)
+	if idx == -1:
+		return false
+	editor.set_line(line, text.replace(CARET, ""))
+	editor.set_caret_column(idx)
+	return true
+
+
+
 func attach(code_edit: CodeEdit) -> void:
 	editor = code_edit
 
@@ -50,6 +62,8 @@ func attach(code_edit: CodeEdit) -> void:
 
 
 func _on_text_changed() -> void:
+	if _fix_caret_marker():
+		return
 	var line := editor.get_caret_line()
 	var col := editor.get_caret_column()
 	if col == 0:

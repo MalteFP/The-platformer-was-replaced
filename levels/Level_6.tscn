@@ -5,7 +5,7 @@
 [node name="Level6" type="Node2D" unique_id=278685256]
 
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_8ihq1")]
-tutorial = Array[String](["Loops can repeat an block of code as many times as you would like.", "Ex.", "```", "for(i = 0; i < 10; i = i + 1) {", "    print(i)", "}", "```", "Would print the numbers from 0 to 9"])
+tutorial = Array[String](["Loops can repeat an block of code as many times as you would like.", "Ex.", "```", "for i = 0; i < 10; i = i + 1 {", "   jump()", "   wait(0.6)", "}", "```", "Would print the numbers from 0 to 9"])
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(4, 120, 400, 120, 400, 490, 4, 490)
