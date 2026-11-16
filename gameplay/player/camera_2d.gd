@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 	_track_player(delta)
 	clamp_to_bounds(global_position)
 
+
 func _track_player(delta: float) -> void:
 	if player_Notifier.is_on_screen():
 		global_position += player.velocity * delta
