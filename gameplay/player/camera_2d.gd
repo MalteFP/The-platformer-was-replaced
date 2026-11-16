@@ -20,8 +20,9 @@ func _process(delta: float) -> void:
 
 
 func _track_player(delta: float) -> void:
-	if player_Notifier.is_on_screen():
-		global_position += player.velocity * delta
+	if player_Notifier.is_inside_tree():
+		if player_Notifier.is_on_screen():
+			global_position += player.velocity * delta
 	
 
 
