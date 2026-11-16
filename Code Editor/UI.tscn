@@ -79,6 +79,7 @@ size_flags_stretch_ratio = 0.0
 theme_override_constants/icon_max_width = 20
 theme_override_icons/icon = SubResource("CompressedTexture2D_e0rfj")
 toggle_mode = true
+button_pressed = true
 icon_alignment = 1
 
 [node name="Timer" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=1751210651]

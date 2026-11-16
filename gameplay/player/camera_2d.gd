@@ -14,7 +14,7 @@ func _ready() -> void:
 	clamp_to_bounds(global_position)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_track_player()
 	clamp_to_bounds(global_position)
 
