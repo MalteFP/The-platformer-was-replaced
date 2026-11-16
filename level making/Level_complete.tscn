@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_xth04")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1292921429]
+visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=558719918]
 anchors_preset = 15
