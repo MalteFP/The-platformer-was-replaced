@@ -4,32 +4,31 @@ extends Camera2D
 const FIT_MARGIN := 0.002
 
 var camera_bounds: Polygon2D
-
+var watcher: Button
 var dragging := false
-@onready var player_Notifier = $"../VisibleOnScreenNotifier2D"
 @onready var player = $".."
 func _ready() -> void:
+	watcher = get_tree().get_first_node_in_group("watcher")
 	global_position = get_parent().global_position
 	camera_bounds = get_tree().get_first_node_in_group("Camera Bounds") as Polygon2D
 	clamp_to_bounds(global_position)
 
 
 func _process(delta: float) -> void:
-	_track_player(delta)
+	_track_player()
 	clamp_to_bounds(global_position)
 
 
-func _track_player(delta: float) -> void:
-	if player_Notifier.is_inside_tree():
-		if player_Notifier.is_on_screen():
-			global_position += player.velocity * delta
+func _track_player() -> void:
+	if watcher.button_pressed:
+		global_position = player.global_position
 	
 
 
 func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT and not watcher.button_pressed:
 			dragging = event.pressed
 
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and zoom.x < 12:
