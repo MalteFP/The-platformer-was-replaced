@@ -19,8 +19,6 @@ func _ready() -> void:
 
 		get_node("FlowContainer").add_child(instance)
 
-		print("Added level button: ", i)
-
 		i += 1
 
 	var btn = Button.new()

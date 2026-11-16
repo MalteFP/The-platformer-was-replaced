@@ -177,6 +177,8 @@ size = Vector2(2, 14)
 floor_max_angle = 1.2217305
 script = ExtResource("1_ahkyy")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1527807312]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=631636852]
 sprite_frames = SubResource("SpriteFrames_q2j6n")
 animation = &"death"
