@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://7si6msfyeojs" path="res://Code Editor/GameInterpreter.gd" id="1_g6l6n"]
 [ext_resource type="PackedScene" uid="uid://mruo30i2leg8" path="res://Code Editor/code_editor.tscn" id="2_qui0h"]
+[ext_resource type="Theme" uid="uid://b8ikixjxb07kg" path="res://ui_theme.tres" id="2_tb60t"]
+[ext_resource type="Script" uid="uid://bos5ljocfow" path="res://Code Editor/Timer.gd" id="3_e0rfj"]
 [ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://Code Editor/output.tscn" id="3_vrfts"]
 
 [node name="GameInterpreter" type="Control" unique_id=1870526410 groups=["GameInterpreter"]]
@@ -27,6 +29,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 10.0
+split_offsets = PackedInt32Array(-63)
+split_offset = -63
 
 [node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/VSplitContainer" unique_id=658922879]
 layout_mode = 2
@@ -46,8 +50,10 @@ split_offset = 363
 custom_minimum_size = Vector2(0, 20)
 custom_maximum_size = Vector2(-1, 20)
 layout_mode = 2
+split_offsets = PackedInt32Array(7, -62)
 dragging_enabled = false
 dragger_visibility = 2
+split_offset = 7
 
 [node name="menu" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=893645759]
 layout_mode = 2
@@ -59,6 +65,14 @@ z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 text = "▶"
+
+[node name="Timer" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=1751210651]
+z_index = 10
+layout_mode = 2
+theme = ExtResource("2_tb60t")
+disabled = true
+text = "Test"
+script = ExtResource("3_e0rfj")
 
 [node name="CodeEditor" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1844267820 groups=["Code Editor"] instance=ExtResource("2_qui0h")]
 layout_mode = 2
@@ -76,7 +90,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/VSplitContainer/HSplitContainer/subviewportcontation" unique_id=1857660881 groups=["viewport"]]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(883, 443)
+size = Vector2i(883, 380)
 render_target_update_mode = 4
 
 [node name="Output" parent="CanvasLayer/VSplitContainer" unique_id=1369597118 groups=["output"] instance=ExtResource("3_vrfts")]

@@ -17,7 +17,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	clamp_to_bounds(global_position)
 
-
 func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
