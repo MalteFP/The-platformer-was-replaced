@@ -12,7 +12,6 @@ grow_vertical = 2
 script = ExtResource("1_xth04")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1292921429]
-visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=558719918]
 anchors_preset = 15
@@ -36,9 +35,10 @@ texture_filter = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Time" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/VBoxContainer2/VBoxContainer" unique_id=1278407507]
+[node name="Timer" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/VBoxContainer2/VBoxContainer" unique_id=1278407507]
 texture_filter = 1
 layout_mode = 2
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/VBoxContainer2" unique_id=2142760315]
 layout_mode = 2

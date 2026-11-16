@@ -2,14 +2,11 @@ extends Button
 var timer = 0
 var Minutes
 var Seconds
+var isTicking = false
 func round_to_dec(num, digit):
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	
@@ -24,6 +21,7 @@ func _process(delta: float) -> void:
 		Seconds = "0" + Seconds
 		
 	text = Minutes + ":" + Seconds
+	if isTicking:
+		timer += delta
 	
-	timer += delta
 	
