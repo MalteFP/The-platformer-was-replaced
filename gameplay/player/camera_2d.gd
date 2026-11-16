@@ -6,16 +6,22 @@ const FIT_MARGIN := 0.002
 var camera_bounds: Polygon2D
 
 var dragging := false
-
-
+@onready var player_Notifier = $"../VisibleOnScreenNotifier2D"
+@onready var player = $".."
 func _ready() -> void:
 	global_position = get_parent().global_position
 	camera_bounds = get_tree().get_first_node_in_group("Camera Bounds") as Polygon2D
 	clamp_to_bounds(global_position)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_track_player(delta)
 	clamp_to_bounds(global_position)
+
+func _track_player(delta: float) -> void:
+	if player_Notifier.is_on_screen():
+		global_position += player.velocity * delta
+	
 
 
 func _input(event: InputEvent) -> void:
@@ -40,7 +46,6 @@ func _input(event: InputEvent) -> void:
 
 
 func clamp_to_bounds(target: Vector2) -> void:
-
 	var region = get_valid_region(zoom)
 
 	if region.size() < 3:
