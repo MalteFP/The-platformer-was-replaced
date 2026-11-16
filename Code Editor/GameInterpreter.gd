@@ -422,4 +422,5 @@ func call_user_function(def: AST.FunctionDefNode, args: Array, call_node):
 
 func _on_menu_pressed() -> void:
 	halted = true
+	Save._save()
 	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
