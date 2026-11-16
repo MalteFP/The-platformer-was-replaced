@@ -317,6 +317,7 @@ func _clear_error() -> void:
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
 
 func _on_run_pressed() -> void:
+	$CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer.timer = 0
 	$CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer.isTicking = true
 	Save._save()
 	if _restarting:
