@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			dragging = event.pressed
 
-		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and zoom.x < 12:
 			change_zoom(zoom.x * 1.1)
 
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:

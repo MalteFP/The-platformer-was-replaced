@@ -197,7 +197,7 @@ func _try_jump() -> void:
 	
 	
 func update_animation():
-	if sprite.animation == "jump" or sprite.animation == "land" or sprite.animation == "death":
+	if sprite.animation == "jump" or sprite.animation == "death":
 		if sprite.is_playing():
 			return
 	if not is_on_floor():
