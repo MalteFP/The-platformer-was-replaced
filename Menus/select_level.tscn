@@ -188,14 +188,6 @@ tile_map_data = PackedByteArray("AAABABcAAQAAAAAAAQBBACMAAgAAAAAAAQBAACMAAgAAAAA
 [node name="Decore" parent="TileMaps" index="2" unique_id=460678584]
 tile_map_data = PackedByteArray("AAADAB0AAQAAAAcAAAAEAB0AAQABAAcAAAAFAB0AAQACAAcAAAALACAAAQAAAAkAAAAMACAAAQABAAkAAAANACAAAQACAAkAAAA=")
 
-[node name="FlowContainer" type="FlowContainer" parent="." unique_id=285162061]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=110925217]
 position = Vector2(1088, 369)
 scale = Vector2(-1, 1)
@@ -212,5 +204,24 @@ shadow_filter_smooth = 3.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1235013098]
 color = Color(0.581033, 0.58103293, 0.581033, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2094427821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer" unique_id=661665476]
+layout_mode = 2
+collapsed = true
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="CenterContainer/VSplitContainer" unique_id=285162061]
+layout_mode = 2
+alignment = 1
+vertical = true
 
 [editable path="TileMaps"]

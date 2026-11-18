@@ -1,5 +1,6 @@
 
 extends Control
+@onready var c = $CenterContainer/VSplitContainer/FlowContainer
 
 func _ready() -> void:
 	custom_minimum_size = Vector2(150, 150)
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 		instance.setup(i)
 
-		get_node("FlowContainer").add_child(instance)
+		c.add_child(instance)
 
 		i += 1
 
@@ -25,7 +26,7 @@ func _ready() -> void:
 	btn.text = "Back"
 	btn.pressed.connect(goToMainMenu)
 
-	get_node("FlowContainer").add_child(btn)
+	c.get_parent().add_child(btn)
 
 
 func goToMainMenu():
