@@ -4,6 +4,8 @@ var done: bool = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not done:
+		if body.death:
+			return
 		done = true
 		body.moving = 0
 		$Base.play("Unlock")
