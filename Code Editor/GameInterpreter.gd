@@ -37,7 +37,7 @@ var _running: bool = false
 var _restarting: bool = false
 
 
-func _load_level(load_code: bool = false, keep_camera: bool = false) -> void:
+func _load_level(load_code: bool = false, keep_camera: bool = false, clear_errors: bool = true) -> void:
 	halted = true
 	var cam_transformation: Transform2D
 	var cam_zoom: Vector2
@@ -54,7 +54,8 @@ func _load_level(load_code: bool = false, keep_camera: bool = false) -> void:
 	player = get_tree().get_first_node_in_group("player")
 	
 	var level_node = level.get_child(0)
-	output.set_tutorial(level_node.tutorial)
+	if clear_errors:
+		output.set_tutorial(level_node.tutorial)
 	player.interpreter = self
 	if keep_camera:
 		player.cam.global_transform = cam_transformation

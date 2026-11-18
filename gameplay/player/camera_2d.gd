@@ -28,7 +28,8 @@ func _track_player() -> void:
 func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not watcher.button_pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			watcher.button_pressed = false
 			dragging = event.pressed
 
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and zoom.x < 12:

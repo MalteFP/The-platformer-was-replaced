@@ -153,8 +153,11 @@ func death():
 	var tree = get_tree()
 	await sprite.animation_finished
 	get_tree().get_first_node_in_group("GameInterpreter").get_node("CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer").timer = 0
-	tree.get_first_node_in_group("GameInterpreter")._load_level(false, true)
-
+	tree.get_first_node_in_group("GameInterpreter")._load_level(false, true, false)
+	tree.get_first_node_in_group("Timer").isTicking = false
+	
+	
+	
 func _update_dash(delta: float) -> void:
 	if dash_timer <= 0.0:
 		return
