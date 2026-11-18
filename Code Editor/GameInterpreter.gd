@@ -316,10 +316,13 @@ func _clear_error() -> void:
 	output.clear_log()
 	for l in code_editor.get_line_count():
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("RunCode"):
+		_on_run_pressed()
 
 func _on_run_pressed() -> void:
-	$CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer.timer = 0
-	$CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer.isTicking = true
+	get_tree().get_first_node_in_group("Timer").timer = 0
+	get_tree().get_first_node_in_group("Timer").isTicking = true
 	Save._save()
 	if _restarting:
 		return
