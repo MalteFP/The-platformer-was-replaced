@@ -60,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	update_animation()
+	update_audio()
 
 	_check_crushed()
 
@@ -122,6 +123,7 @@ func jump(args: Array):
 
 func land():
 	sprite.play("land")
+	$Audio/land.play()
 
 func dash(args):
 	if not has_dash or dash_timer > 0.0:
@@ -134,6 +136,7 @@ func dash(args):
 	has_dash = false
 	dash_timer = DASH_TIME
 	velocity = dash_dir * DASH_LENGTH
+	$Audio/dash.play()
 
 
 func gravity(delta):
@@ -150,6 +153,7 @@ func death():
 	moving = 0
 	_end_dash()
 	sprite.play("death")
+	$Audio/death.play()
 	var tree = get_tree()
 	await sprite.animation_finished
 	get_tree().get_first_node_in_group("GameInterpreter").get_node("CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer").timer = 0
@@ -197,6 +201,7 @@ func _try_jump() -> void:
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 	sprite.play("jump")
+	$Audio/jump.play()
 	
 	
 	
@@ -211,3 +216,11 @@ func update_animation():
 		sprite.play("run")
 	else:
 		sprite.play("idle")
+
+
+func update_audio():
+	if moving != 0 and is_on_floor():
+		if not $Audio/walk.playing:
+			$Audio/walk.play()
+	else:
+		$Audio/walk.stop()
