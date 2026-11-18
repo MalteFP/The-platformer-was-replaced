@@ -1,11 +1,13 @@
 [gd_scene format=4 uid="uid://bipw265ow1jky"]
 
-[ext_resource type="PackedScene" uid="uid://c74bnindhjflb" path="res://level making/level.tscn" id="1_rj2qe"]
+[ext_resource type="PackedScene" uid="uid://c74bnindhjflb" path="res://level making/level.tscn" id="1_8ihq1"]
 
 [node name="Level6" type="Node2D" unique_id=278685256]
 
+
 [node name="level" parent="." unique_id=212496380 instance=ExtResource("1_rj2qe")]
 tutorial = Array[String](["Loops can repeat an block of code as many times as you would like.", "Ex.", "```", "for i = 0; i < 10; i = i + 1 {", "   jump()", "   wait(0.6)", "}", "```", "Would jump 10 times at an interval of 0.6 seconds.", "The conditions for the loop are split in three by semicolons (;).", "The first part (i = 0), defines a variable that will be used later.", "The second part (i<10), is like an if statement, and decides wether or not to repeat the loop.", "The third part (i=i+1), changes the variabel so the loop won't repeat forever."])
+
 
 [node name="Camera Bounds" parent="level" index="0" unique_id=543013079]
 polygon = PackedVector2Array(-129, 39, 578, 39, 575, 585, -130, 582)
