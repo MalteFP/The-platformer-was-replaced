@@ -18,6 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://diricgwjdisn" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot18.png" id="9_fath0"]
 [ext_resource type="Texture2D" uid="uid://dmqbt86qp6qif" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot19.png" id="10_u5hhf"]
 [ext_resource type="PackedScene" uid="uid://brhpmnkkfypmu" path="res://level making/Level_complete.tscn" id="18_dtclg"]
+[ext_resource type="AudioStream" uid="uid://bbcofh2nxwbn7" path="res://Audio/death.wav" id="19_5j16v"]
+[ext_resource type="AudioStream" uid="uid://bwa6f0811ckxn" path="res://Audio/dash.wav" id="20_5j16v"]
+[ext_resource type="AudioStream" uid="uid://cg2u03blxdduv" path="res://Audio/land.wav" id="21_iinxr"]
+[ext_resource type="AudioStream" uid="uid://bspyjqrl8eb8h" path="res://Audio/step_1.wav" id="22_cm2gl"]
+[ext_resource type="AudioStream" uid="uid://bcpy5dffctru5" path="res://Audio/step_2.wav" id="23_f4wa7"]
+[ext_resource type="AudioStream" uid="uid://dft82jlmdwrnc" path="res://Audio/step_3.wav" id="24_1s4gf"]
+[ext_resource type="AudioStream" uid="uid://e0hebllkoled" path="res://Audio/step_4.wav" id="25_vcq8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_011tu"]
 atlas = ExtResource("3_e85hc")
@@ -173,6 +180,27 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgr0v"]
 size = Vector2(2, 14)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iinxr"]
+playback_mode = 1
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("20_5j16v")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5j16v"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("21_iinxr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bgr0v"]
+random_pitch = 1.0594631
+random_volume_offset_db = 0.29
+streams_count = 4
+stream_0/stream = ExtResource("22_cm2gl")
+stream_1/stream = ExtResource("23_f4wa7")
+stream_2/stream = ExtResource("24_1s4gf")
+stream_3/stream = ExtResource("25_vcq8p")
+
 [node name="Player" type="CharacterBody2D" unique_id=1084347971 groups=["player"]]
 floor_max_angle = 1.2217305
 script = ExtResource("1_ahkyy")
@@ -193,6 +221,9 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("7_e85hc")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D" unique_id=529792222]
+current = true
+
 [node name="Crush area" type="Area2D" parent="." unique_id=130012974]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crush area" unique_id=632664386]
@@ -201,5 +232,28 @@ shape = SubResource("RectangleShape2D_bgr0v")
 
 [node name="LevelComplete" parent="." unique_id=1175825285 instance=ExtResource("18_dtclg")]
 visible = false
+
+[node name="Audio" type="Node2D" parent="." unique_id=1819952020]
+
+[node name="death" type="AudioStreamPlayer" parent="Audio" unique_id=50015883]
+stream = ExtResource("19_5j16v")
+volume_db = -5.0
+
+[node name="jump" type="AudioStreamPlayer" parent="Audio" unique_id=528955770]
+stream = SubResource("AudioStreamRandomizer_iinxr")
+volume_db = -10.0
+
+[node name="dash" type="AudioStreamPlayer" parent="Audio" unique_id=531534562]
+stream = SubResource("AudioStreamRandomizer_iinxr")
+volume_db = -10.0
+
+[node name="land" type="AudioStreamPlayer" parent="Audio" unique_id=308533628]
+stream = SubResource("AudioStreamRandomizer_5j16v")
+volume_db = -10.0
+
+[node name="walk" type="AudioStreamPlayer" parent="Audio" unique_id=24361564]
+stream = SubResource("AudioStreamRandomizer_bgr0v")
+volume_db = -15.0
+pitch_scale = 0.75
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
