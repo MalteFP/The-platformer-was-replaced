@@ -430,3 +430,7 @@ func _on_menu_pressed() -> void:
 	halted = true
 	Save._save()
 	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
+
+
+func _on_code_editor_lines_edited_from(_from_line: int, _to_line: int) -> void:
+	halted = true
