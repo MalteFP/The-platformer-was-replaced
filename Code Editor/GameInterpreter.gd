@@ -338,6 +338,7 @@ func _on_run_pressed() -> void:
 	if _running:
 		_restarting = false
 		output.error_line(0, "The previous run didn't stop in time, Try again")
+		_on_menu_pressed()
 		return
 	_load_level(false, true)
 	await run_code()
