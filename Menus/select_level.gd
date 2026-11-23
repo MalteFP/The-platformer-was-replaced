@@ -48,8 +48,8 @@ func close_loading_screen():
 	var bottom: Sprite2D = $"Loading screen/bottom"
 	
 	var tween_down = create_tween()
-	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 1)
-	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 1)
+	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 0.5)
+	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 0.5)
 	await tween_down.finished
 
 func loading_screen(s = null):
@@ -57,11 +57,11 @@ func loading_screen(s = null):
 	var bottom: Sprite2D = $"Loading screen/bottom"
 	
 	var tween_down = create_tween()
-	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 1)
-	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 1)
+	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 0.5)
+	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 0.5)
 	if s:
 		await s
 	
 	var tween_up = create_tween()
-	tween_up.parallel().tween_property(top, "position", Vector2(0, -360), 1)
-	tween_up.parallel().tween_property(bottom, "position", Vector2(0, 324), 1)
+	tween_up.parallel().tween_property(top, "position", Vector2(0, -360), 0.5)
+	tween_up.parallel().tween_property(bottom, "position", Vector2(0, 324), 0.5)
