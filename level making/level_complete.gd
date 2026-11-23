@@ -2,6 +2,8 @@ extends Control
 
 func _ready() -> void:
 	get_node("CanvasLayer").hide()
+	if ScreenHolder.currentScreenNum + 1 == ScreenHolder.LEVEL_AMOUNT:
+		$CanvasLayer/CenterContainer/PanelContainer/VBoxContainer2/HBoxContainer/NextLevel.disabled = true
 
 
 

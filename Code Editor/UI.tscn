@@ -5,6 +5,8 @@
 [ext_resource type="Theme" uid="uid://b8ikixjxb07kg" path="res://ui_theme.tres" id="2_tb60t"]
 [ext_resource type="Script" uid="uid://bos5ljocfow" path="res://Code Editor/Timer.gd" id="3_e0rfj"]
 [ext_resource type="PackedScene" uid="uid://blucib3jdicbr" path="res://Code Editor/output.tscn" id="3_vrfts"]
+[ext_resource type="Texture2D" uid="uid://cwrg6fiw40xvq" path="res://textures/loading screen/top.webp" id="6_l6k42"]
+[ext_resource type="Texture2D" uid="uid://ck8xse8uamc46" path="res://textures/loading screen/bottom.webp" id="7_qr1j4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e0rfj"]
 load_path = "res://.godot/imported/Eye.png-6e054a285ec31bc11a9b87c3af66152b.ctex"
@@ -65,14 +67,12 @@ size_flags_stretch_ratio = 0.1
 text = "Back"
 
 [node name="run" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=1903476606]
-z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 text = "▶"
 
 [node name="Watcher" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=4080047 groups=["watcher"]]
-z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
@@ -83,7 +83,6 @@ button_pressed = true
 icon_alignment = 1
 
 [node name="Timer" type="Button" parent="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer" unique_id=1751210651 groups=["Timer"]]
-z_index = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
@@ -114,6 +113,22 @@ render_target_update_mode = 4
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.49
+
+[node name="Loading screen" type="Control" parent="CanvasLayer" unique_id=1946006458]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="top" type="Sprite2D" parent="CanvasLayer/Loading screen" unique_id=1285582769]
+scale = Vector2(2, 2)
+texture = ExtResource("6_l6k42")
+centered = false
+
+[node name="bottom" type="Sprite2D" parent="CanvasLayer/Loading screen" unique_id=715924077]
+scale = Vector2(2, 2)
+texture = ExtResource("7_qr1j4")
+centered = false
 
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/run" to="." method="_on_run_pressed"]

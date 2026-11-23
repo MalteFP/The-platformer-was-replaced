@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dlm2hybebuey3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot9.png" id="15_0q06p"]
 [ext_resource type="Texture2D" uid="uid://jdm35f7u2dow" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot10.png" id="16_u8ak5"]
 [ext_resource type="Texture2D" uid="uid://dsv47lns74t0e" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot11.png" id="17_exeb3"]
+[ext_resource type="Texture2D" uid="uid://cwrg6fiw40xvq" path="res://textures/loading screen/top.webp" id="18_yvd4r"]
+[ext_resource type="Texture2D" uid="uid://ck8xse8uamc46" path="res://textures/loading screen/bottom.webp" id="19_rofim"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_011tu"]
 atlas = ExtResource("3_b716q")
@@ -257,6 +259,19 @@ layout_mode = 0
 offset_right = 28.0
 offset_bottom = 22.0
 text = "Sign-out"
+
+[node name="Loading screen" type="CanvasLayer" parent="." unique_id=632645844]
+
+[node name="top" type="Sprite2D" parent="Loading screen" unique_id=1749198025]
+scale = Vector2(2, 2)
+texture = ExtResource("18_yvd4r")
+centered = false
+
+[node name="bottom" type="Sprite2D" parent="Loading screen" unique_id=552292886]
+top_level = true
+scale = Vector2(2, 2)
+texture = ExtResource("19_rofim")
+centered = false
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

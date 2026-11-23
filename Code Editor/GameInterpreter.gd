@@ -38,6 +38,8 @@ var _restarting: bool = false
 
 
 func _load_level(load_code: bool = false, keep_camera: bool = false, clear_errors: bool = true) -> void:
+	if load_code:
+		await close_loading_screen()
 	halted = true
 	var cam_transformation: Transform2D
 	var cam_zoom: Vector2
@@ -62,6 +64,7 @@ func _load_level(load_code: bool = false, keep_camera: bool = false, clear_error
 		player.cam.zoom = cam_zoom
 	if load_code:
 		Save._load_code()
+		loading_screen(Save.request_completed)
 func _ready() -> void:
 	error_occurred.connect(_show_error)
 	_completion.attach(code_editor)
@@ -316,7 +319,7 @@ func _clear_error() -> void:
 	output.clear_log()
 	for l in code_editor.get_line_count():
 		code_editor.set_line_background_color(l, Color(0.0, 0.0, 0.0, 0.0))
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("RunCode"):
 		_on_run_pressed()
 
@@ -420,13 +423,33 @@ func call_user_function(def: AST.FunctionDefNode, args: Array, call_node):
 	returning = false
 	return_value = null
 	return result
-	
-	
-	
-	
 
+func close_loading_screen():
+	var top: Sprite2D = $"CanvasLayer/Loading screen/top"
+	var bottom: Sprite2D = $"CanvasLayer/Loading screen/bottom"
+	
+	var tween_down = create_tween()
+	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 1)
+	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 1)
+	await tween_down.finished
 
+func loading_screen(s = null):
+	var top: Sprite2D = $"CanvasLayer/Loading screen/top"
+	var bottom: Sprite2D = $"CanvasLayer/Loading screen/bottom"
+	
+	var tween_down = create_tween()
+	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 1)
+	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 1)
+	
+	if s:
+		await s
+	
+	var tween_up = create_tween()
+	tween_up.parallel().tween_property(top, "position", Vector2(0, -360), 1)
+	tween_up.parallel().tween_property(bottom, "position", Vector2(0, 324), 1)
+	
 func _on_menu_pressed() -> void:
+	await close_loading_screen()
 	halted = true
 	Save._save()
 	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")

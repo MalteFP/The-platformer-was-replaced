@@ -3,6 +3,7 @@ extends Control
 const sign_in_data_location = "user://sign_in_data.json"
 
 func _on_play_pressed() -> void:
+	await close_loading_screen()
 	get_tree().change_scene_to_file("res://Menus/select_level.tscn")
 
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	Auth.auth_error.connect(_on_auth_error)
 
 func _on_signed_in(user: Dictionary) -> void:
+	loading_screen()
 	print("Signed in. User ID: ", user.get("id", ""))
 	$VSplitContainer.visible = false
 	$signout.visible = true
@@ -56,3 +58,30 @@ func _sign_in_on_load() -> void:
 		$VSplitContainer/Email.text = content.get("email")
 		$VSplitContainer/Password.text = content.get("password")
 		Auth.sign_in($VSplitContainer/Email.text, $VSplitContainer/Password.text)
+
+
+
+
+
+func close_loading_screen():
+	var top: Sprite2D = $"Loading screen/top"
+	var bottom: Sprite2D = $"Loading screen/bottom"
+	
+	var tween_down = create_tween()
+	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 1)
+	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 1)
+	await tween_down.finished
+
+func loading_screen(s = null):
+	var top: Sprite2D = $"Loading screen/top"
+	var bottom: Sprite2D = $"Loading screen/bottom"
+	
+	var tween_down = create_tween()
+	tween_down.parallel().tween_property(top, "position", Vector2(0, 0), 1)
+	tween_down.parallel().tween_property(bottom, "position", Vector2(0, 0), 1)
+	if s:
+		await s
+	
+	var tween_up = create_tween()
+	tween_up.parallel().tween_property(top, "position", Vector2(0, -360), 1)
+	tween_up.parallel().tween_property(bottom, "position", Vector2(0, 324), 1)

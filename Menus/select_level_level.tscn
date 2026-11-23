@@ -3,4 +3,8 @@
 [ext_resource type="Script" uid="uid://duuwcn5e3y2sa" path="res://Menus/select_level_level.gd" id="1_lwlgf"]
 
 [node name="SelectLevelLevel" type="Button" unique_id=898345704]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_default_cursor_shape = 2
 script = ExtResource("1_lwlgf")

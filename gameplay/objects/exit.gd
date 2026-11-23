@@ -13,3 +13,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		get_tree().get_first_node_in_group("LevelComplete").get_node("CanvasLayer").show()
 		get_tree().get_first_node_in_group("GameInterpreter").get_node("CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer").isTicking = false
 		get_tree().get_first_node_in_group("LevelComplete").get_node("CanvasLayer/CenterContainer/PanelContainer/VBoxContainer2/VBoxContainer/Timer").text = get_tree().get_first_node_in_group("GameInterpreter").get_node("CanvasLayer/VSplitContainer/HSplitContainer/VSplitContainer/HSplitContainer/Timer").text
+		Save._set_completed(true)

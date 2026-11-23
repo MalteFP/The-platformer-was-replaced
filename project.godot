@@ -42,6 +42,7 @@ viewport=""
 LevelComplete=""
 watcher=""
 Timer=""
+"select level"=""
 
 [gui]
 

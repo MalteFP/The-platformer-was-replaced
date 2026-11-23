@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dlm2hybebuey3" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot9.png" id="16_li6r7"]
 [ext_resource type="Texture2D" uid="uid://jdm35f7u2dow" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot10.png" id="17_vumhm"]
 [ext_resource type="Texture2D" uid="uid://dsv47lns74t0e" path="res://textures/robot pack/OrangeRobot/SeparetedImages/OrangeRobot11.png" id="18_2xyj4"]
+[ext_resource type="Texture2D" uid="uid://cwrg6fiw40xvq" path="res://textures/loading screen/top.webp" id="19_72q33"]
+[ext_resource type="Texture2D" uid="uid://ck8xse8uamc46" path="res://textures/loading screen/bottom.webp" id="20_t2q8j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_011tu"]
 atlas = ExtResource("4_72q33")
@@ -166,7 +168,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="SelectLevel" type="Control" unique_id=1916627188]
+[node name="SelectLevel" type="Control" unique_id=1916627188 groups=["select level"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -219,9 +221,27 @@ collapsed = true
 dragging_enabled = false
 dragger_visibility = 1
 
+[node name="Label" type="Label" parent="CenterContainer/VSplitContainer" unique_id=13075699]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Select a level"
+horizontal_alignment = 1
+
 [node name="FlowContainer" type="FlowContainer" parent="CenterContainer/VSplitContainer" unique_id=285162061]
 layout_mode = 2
 alignment = 1
 vertical = true
+
+[node name="Loading screen" type="CanvasLayer" parent="." unique_id=90638761]
+
+[node name="top" type="Sprite2D" parent="Loading screen" unique_id=547977130]
+scale = Vector2(2, 2)
+texture = ExtResource("19_72q33")
+centered = false
+
+[node name="bottom" type="Sprite2D" parent="Loading screen" unique_id=1891433864]
+scale = Vector2(2, 2)
+texture = ExtResource("20_t2q8j")
+centered = false
 
 [editable path="TileMaps"]
